@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, SignUp.class);
                 startActivity(intent);
                 finish(); // Finish splash activity so it doesn't stay in the backstack
             }
