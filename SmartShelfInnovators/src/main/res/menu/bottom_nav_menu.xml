@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_dashboard"
+        android:icon="@drawable/dashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/menu_regulators"
+        android:icon="@drawable/controller"
+        android:title="Regulators" />
+    <item
+        android:id="@+id/menu_inventory"
+        android:icon="@drawable/storage"
+        android:title="Inventory" />
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/settings"
+        android:title="Settings" />
+</menu>
