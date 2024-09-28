@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SmartProduceManagementSystem</string>
+    <string name="app_logo">App Logo</string>
+    <string name="welcome_message">Smart Produce management System</string>
 </resources>
