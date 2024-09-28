@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "33797428593",
+    "project_id": "smartshelf-innovators-c4b0e",
+    "storage_bucket": "smartshelf-innovators-c4b0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33797428593:android:a2c2986c1b67ed8f8b92d0",
+        "android_client_info": {
+          "package_name": "ca.smartshelfinnovators.it.smartproducemanagementsystem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdvPfZh6m_8dey0V1e3MOSyH_JZN8HeWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
