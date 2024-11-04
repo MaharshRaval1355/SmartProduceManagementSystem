@@ -24,4 +24,6 @@
     <string name="full_name_cannot_be_empty">Name can\'t be empty</string>
     <string name="phone_number_cannot_be_empty">number can\'t be empty</string>
     <string name="phone_number">Phone Number</string>
+    <string name="splash_title">Smart Produce Management System</string>
+    <string name="smartshelf_innovators">SmartShelf Innovators</string>
 </resources>

@@ -5,31 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splashbackground"
     tools:context=".SplashActivity">
 
-    <ImageView
-        android:id="@+id/splash_logo"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:src="@drawable/app_logo"
-        app:layout_constraintBottom_toTopOf="@id/splash_text"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/splash_title"
+        android:textAlignment="center"
+        android:textColor="@color/SlateBlue"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/splash_text"
-        android:layout_width="338dp"
-        android:layout_height="92dp"
-        android:text="@string/welcome_message"
-        android:textColor="@android:color/black"
-        android:textSize="34sp"
-        android:visibility="visible"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="210dp"
+        android:text="@string/smartshelf_innovators"
+        android:textColor="@color/SlateBlue"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splash_logo" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
