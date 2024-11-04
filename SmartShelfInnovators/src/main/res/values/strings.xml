@@ -15,4 +15,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="already_an_user_login">Already an user? login</string>
     <string name="welcome_message">SmartSelf Innovators</string>
+    <string name="or">Or</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="default_web_client_id">Default Web Client Id</string>
+    <string name="google_sign_in_failed">"Google Sign in Failed "</string>
 </resources>
