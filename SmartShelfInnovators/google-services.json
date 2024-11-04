@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "33797428593",
+    "firebase_url": "https://smartshelf-innovators-c4b0e-default-rtdb.firebaseio.com",
     "project_id": "smartshelf-innovators-c4b0e",
-    "storage_bucket": "smartshelf-innovators-c4b0e.appspot.com"
+    "storage_bucket": "smartshelf-innovators-c4b0e.firebasestorage.app"
   },
   "client": [
     {
@@ -12,7 +13,20 @@
           "package_name": "ca.smartshelfinnovators.it.smartproducemanagementsystem"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "33797428593-0hrkb22t3bf4q3tai8ovjsviq5mk8rsk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.smartshelfinnovators.it.smartproducemanagementsystem",
+            "certificate_hash": "c8d913b08ef33f4c8a4fff115ed5e16a9f042cae"
+          }
+        },
+        {
+          "client_id": "33797428593-lvtvv1aea4q8rp3517fg18p2mlo9c9gi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCdvPfZh6m_8dey0V1e3MOSyH_JZN8HeWw"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33797428593-lvtvv1aea4q8rp3517fg18p2mlo9c9gi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
