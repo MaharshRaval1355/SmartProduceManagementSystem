@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-
-
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,23 +15,26 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Find the ImageView for the logo in your activity_splash.xml layout
-        ImageView splash_logo = findViewById(R.id.splash_logo);
+        // Find the TextViews in your activity_splash.xml layout
+        TextView titleText = findViewById(R.id.title_text);
+        TextView subtitleText = findViewById(R.id.subtitle_text);
 
-        // Load the zoom-out animation
-        Animation zoomOutAnimation = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
+        // Set colors for the TextViews to match your background
+        titleText.setTextColor(getResources().getColor(R.color.CoolSteelBlue));  // Color for title
+        subtitleText.setTextColor(getResources().getColor(R.color.CoolSteelBlue)); // Color for subtitle
 
-        // Start the animation on ImageView
-        splash_logo.startAnimation(zoomOutAnimation);
+        // Load the fade-in animation
+        Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
 
-        // Delay for 3 seconds, then transition to MainActivity
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, SignUp.class);
-                startActivity(intent);
-                finish(); // Finish splash activity so it doesn't stay in the backstack
-            }
+        // Start the animation on both TextViews
+        titleText.startAnimation(fadeInAnimation);
+        subtitleText.startAnimation(fadeInAnimation);
+
+        // Delay for 3 seconds, then transition to SignUp activity
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(SplashActivity.this, SignUp.class);
+            startActivity(intent);
+            finish(); // Finish splash activity so it doesn't stay in the backstack
         }, 3000); // 3000 milliseconds = 3 seconds
     }
 }
