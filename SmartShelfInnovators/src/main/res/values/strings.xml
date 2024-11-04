@@ -19,4 +19,8 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="default_web_client_id">Default Web Client Id</string>
     <string name="google_sign_in_failed">"Google Sign in Failed "</string>
+    <string name="full_name">Full Name</string>
+    <string name="full_name_cannot_be_empty">Name can\'t be empty</string>
+    <string name="phone_number_cannot_be_empty">number can\'t be empty</string>
+    <string name="phone_number">Phone Number</string>
 </resources>
