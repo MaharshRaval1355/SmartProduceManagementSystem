@@ -15,13 +15,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private DatabaseReference databaseReference; // Reference to the database
+    private FirebaseFirestore firestore; // Firestore instance
     private EditText signupEmail, signupPassword, userName, phoneNumber;
     private Button signupButton;
     private TextView loginRedirectText;
@@ -31,9 +33,9 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // Initialize Firebase Auth and Database Reference
+        // Initialize Firebase Auth and Firestore
         auth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        firestore = FirebaseFirestore.getInstance();
 
         // Initialize UI elements
         signupEmail = findViewById(R.id.signup_email);
@@ -77,23 +79,28 @@ public class SignUp extends AppCompatActivity {
                             // Get the user's unique ID
                             String userId = auth.getCurrentUser().getUid();
 
-                            // Create a User object
-                            User newUser = new User(name, email, phone);
+                            // Create a map to store user information
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("name", name);
+                            user.put("email", email);
+                            user.put("phone", phone);
+                            user.put("password", password); // Note: storing plain text password is not secure
 
-                            // Store user information in Firebase Realtime Database
-                            databaseReference.child(userId).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(SignUp.this, getString(R.string.signup_successful), Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(SignUp.this, Login.class));
-                                    } else {
-                                        Toast.makeText(SignUp.this, getString(R.string.signup_failed) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                            // Store user information in Firestore
+                            firestore.collection("Users").document(userId).set(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(SignUp.this, getString(R.string.signup_successful), Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(SignUp.this, Login.class));
+                                            } else {
+                                                Toast.makeText(SignUp.this, getString(R.string.signup_failed) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         } else {
-                            Toast.makeText(SignUp.this, getString(R.string.signup_failed) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this,getString(R.string.signup_failed) + task.getException().getMessage() , Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -106,22 +113,5 @@ public class SignUp extends AppCompatActivity {
                 startActivity(new Intent(SignUp.this, Login.class));
             }
         });
-    }
-
-    // User class for storing user data
-    public static class User {
-        public String name;
-        public String email;
-        public String phone;
-
-        public User() {
-
-        }
-
-        public User(String name, String email, String phone) {
-            this.name = name;
-            this.email = email;
-            this.phone = phone;
-        }
     }
 }

@@ -1,12 +1,15 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +37,7 @@ public class Login extends AppCompatActivity {
     private Button loginButton, googleSignInButton;
     private FirebaseAuth auth;
     private GoogleSignInClient googleSignInClient;
+    private CheckBox rememberMeCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,11 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         signupRedirectText = findViewById(R.id.signUpRedirectText);
         googleSignInButton = findViewById(R.id.googleSignInButton);
+        rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         auth = FirebaseAuth.getInstance();
+
+        // Load saved credentials if available
+        loadCredentials();
 
         // Initialize Google Sign-In options
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -68,6 +76,14 @@ public class Login extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
+
+                                        // Save credentials if "Remember Me" is checked
+                                        if (rememberMeCheckBox.isChecked()) {
+                                            saveCredentials(email, pass);
+                                        } else {
+                                            clearCredentials();
+                                        }
+
                                         startActivity(new Intent(Login.this, MainActivity.class));
                                         finish();
                                     }
@@ -103,6 +119,33 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, SignUp.class));
             }
         });
+    }
+
+    private void loadCredentials() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "");
+        String password = sharedPreferences.getString("password", "");
+        if (!email.isEmpty()) {
+            loginEmail.setText(email);
+            loginPassword.setText(password);
+            rememberMeCheckBox.setChecked(true); // Automatically check the box if credentials are loaded
+        }
+    }
+
+    private void saveCredentials(String email, String password) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", email);
+        editor.putString("password", password);
+        editor.apply();
+    }
+
+    private void clearCredentials() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("email");
+        editor.remove("password");
+        editor.apply();
     }
 
     @Override
