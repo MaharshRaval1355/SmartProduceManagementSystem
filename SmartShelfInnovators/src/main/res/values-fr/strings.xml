@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SmartProduceManagementSystem</string>
+    <string name="app_name">Système intelligent de gestion des produits</string>
     <string name="email_cannot_be_empty">L’e-mail ne peut pas être vide</string>
     <string name="password_cannot_be_empty">Le mot de passe ne peut pas être vide</string>
     <string name="signup_successful">Inscription réussie</string>
@@ -16,14 +16,20 @@
     <string name="sign_up">S’enregistrer</string>
     <string name="already_an_user_login">Vous êtes déjà un utilisateur ? connectez-vous</string>
     <string name="welcome_message">SmartSelf Innovators</string>
-    <string name="or">Or</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
-    <string name="default_web_client_id">Default Web Client Id</string>
-    <string name="google_sign_in_failed">"Google Sign in Failed "</string>
-    <string name="full_name">Full Name</string>
-    <string name="full_name_cannot_be_empty">Name can\'t be empty</string>
-    <string name="phone_number_cannot_be_empty">number can\'t be empty</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="splash_title">Smart Produce Management System</string>
-    <string name="smartshelf_innovators">SmartShelf Innovators</string>
+    <string name="or">Ou</string>
+    <string name="sign_in_with_google">Se connecter avec Google</string>
+    <string name="default_web_client_id">ID client Web par défaut</string>
+    <string name="google_sign_in_failed">Échec de la connexion Google</string>
+    <string name="full_name">Nom complet</string>
+    <string name="full_name_cannot_be_empty">Le nom ne peut pas être vide</string>
+    <string name="phone_number_cannot_be_empty">Le numéro ne peut pas être vide</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="splash_title">Système intelligent de gestion des produits</string>
+    <string name="smartshelf_innovators">Innovateurs SmartShelf</string>
+    <string name="settings">Paramètres</string>
+    <string name="lock_screen">Écran de verrouillage</string>
+    <string name="notifications">Notifications</string>
+    <string name="dark_mode">Mode sombre</string>
+    <string name="log_out">Déconnexion</string>
+    <string name="language">Langue</string>
 </resources>
