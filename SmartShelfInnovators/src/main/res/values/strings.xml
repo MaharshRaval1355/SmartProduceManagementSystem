@@ -25,4 +25,8 @@
     <string name="phone_number">Phone Number</string>
     <string name="splash_title">Smart Produce Management System</string>
     <string name="smartshelf_innovators">SmartShelf Innovators</string>
+    <string name="help" />
+    <string name="profile" />
+    <string name="home" />
+    <string name="settings" />
 </resources>
