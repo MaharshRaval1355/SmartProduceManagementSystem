@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,14 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corners"
-        android:padding="20dp"
+        android:padding="22dp"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -33,40 +32,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
+            android:padding="32dp"
             android:background="@drawable/gradient_background_alerts">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_alert"
-                    android:contentDescription="@string/alert_icon_description" />
-
                 <TextView
+                    android:id="@+id/alertText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="8dp"
                     android:text="ALERTS"
-                    android:textSize="18sp"
+                    android:textSize="34sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="7dp"
+                    android:contentDescription="@string/alert_icon_description"
+                    android:src="@drawable/alert_card_img" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/alertDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/black"
-                android:paddingTop="8dp" />
+                android:paddingTop="10dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
