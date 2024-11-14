@@ -14,7 +14,6 @@ import java.util.Set;
 
 public class DashboardFragment extends Fragment {
 
-    // Define the array of greetings
     private String[] greetings = {
             "Hello there,\nlooks like it's gonna be a great day!",
             "Good day!\nReady to manage your inventory?",
@@ -23,7 +22,6 @@ public class DashboardFragment extends Fragment {
             "Hi there,\ntime to check today’s metrics!"
     };
 
-    // Define the array of alert messages
     private String[] alertMessages = {
             "Unusual behavior in bakery section",
             "Cold Beverages require Immediate Temperature Check",
@@ -31,7 +29,6 @@ public class DashboardFragment extends Fragment {
             "Temperature rise detected in frozen foods aisle"
     };
 
-    // Define the array of stock messages
     private String[] stockMessages = {
             "Deli: 30% - Needs Refill",
             "Produce: 80% - Good Enough",
@@ -40,44 +37,51 @@ public class DashboardFragment extends Fragment {
             "Bakery: 60% - Consider Restocking"
     };
 
-    private TextView greetingTextView;
-    private TextView alertDetails;
-    private TextView stockDetails;
-    private boolean isAlertsExpanded = false;
-    private boolean isStockExpanded = false;
+    private String[] sensorMessages = {
+            "High temperature in Frozen Foods",
+            "Lighting issues in Dairy",
+            "Moderate humidity in Produce",
+            "Excessive CO2 levels in Greenhouse",
+            "Ventilation failure in Bakery",
+            "Stable conditions in Meat Section"
+    };
+
+    private TextView greetingTextView, alertDetails, stockDetails, sensorDetails;
+    private boolean isAlertsExpanded = false, isStockExpanded = false, isSensorsExpanded = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        // Initialize the greeting TextView
         greetingTextView = view.findViewById(R.id.greeting_text_view);
-
-        // Initialize the alerts TextView and CardView
-        CardView alertCard = view.findViewById(R.id.alertCard);
         alertDetails = view.findViewById(R.id.alertDetails);
-        alertCard.setOnClickListener(v -> {
-            if (!isAlertsExpanded) {
-                alertDetails.setVisibility(View.VISIBLE);
-                alertDetails.setText(getRandomAlertMessages());
-                isAlertsExpanded = true;
-            } else {
-                alertDetails.setVisibility(View.GONE);
-                isAlertsExpanded = false;
+        stockDetails = view.findViewById(R.id.stockDetails);
+        sensorDetails = view.findViewById(R.id.sensorDetails);
+
+        // Alert Card Initialization
+        CardView alertCard = view.findViewById(R.id.alertCard);
+        alertCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDetails(alertDetails, getRandomMessages(alertMessages, 2));
             }
         });
 
-        // Initialize the stock TextView and CardView
+        // Stock Card Initialization
         CardView stockCard = view.findViewById(R.id.stockCard);
-        stockDetails = view.findViewById(R.id.stockDetails);
-        stockCard.setOnClickListener(v -> {
-            if (!isStockExpanded) {
-                stockDetails.setVisibility(View.VISIBLE);
-                stockDetails.setText(getRandomStockMessages());
-                isStockExpanded = true;
-            } else {
-                stockDetails.setVisibility(View.GONE);
-                isStockExpanded = false;
+        stockCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDetails(stockDetails, getRandomMessages(stockMessages, 3));
+            }
+        });
+
+        // Sensor Card Initialization
+        CardView sensorCard = view.findViewById(R.id.sensorCard);
+        sensorCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleDetails(sensorDetails, getRandomMessages(sensorMessages, 2));
             }
         });
 
@@ -87,35 +91,32 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        updateGreeting(); // Update greeting text each time the fragment is accessed
+        updateGreeting();
+    }
+
+    private void toggleDetails(TextView detailsView, String message) {
+        if (detailsView.getVisibility() == View.VISIBLE) {
+            detailsView.setVisibility(View.GONE);
+        } else {
+            detailsView.setVisibility(View.VISIBLE);
+            detailsView.setText(message);
+        }
     }
 
     private void updateGreeting() {
-        int idx = new Random().nextInt(greetings.length);
-        greetingTextView.setText(greetings[idx]);
+        greetingTextView.setText(greetings[new Random().nextInt(greetings.length)]);
     }
 
-    private String getRandomAlertMessages() {
+    private String getRandomMessages(String[] messages, int count) {
+        Set<Integer> indices = new HashSet<>();
         Random random = new Random();
-        int firstMsgIndex = random.nextInt(alertMessages.length);
-        int secondMsgIndex;
-        do {
-            secondMsgIndex = random.nextInt(alertMessages.length);
-        } while (secondMsgIndex == firstMsgIndex);
-        return alertMessages[firstMsgIndex] + "\n" + alertMessages[secondMsgIndex];
-    }
-
-    private String getRandomStockMessages() {
-        Random random = new Random();
-        Set<Integer> usedIndices = new HashSet<>();
-        StringBuilder sb = new StringBuilder();
-        while (usedIndices.size() < 3) {
-            int index = random.nextInt(stockMessages.length);
-            if (!usedIndices.contains(index)) {
-                usedIndices.add(index);
-                sb.append(stockMessages[index]).append("\n");
+        StringBuilder builder = new StringBuilder();
+        while (indices.size() < count) {
+            int index = random.nextInt(messages.length);
+            if (indices.add(index)) {
+                builder.append(messages[index]).append("\n");
             }
         }
-        return sb.toString().trim();
+        return builder.toString().trim();
     }
 }
