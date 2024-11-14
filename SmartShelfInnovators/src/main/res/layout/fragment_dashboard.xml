@@ -196,6 +196,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         app:fabSize="normal"
-        android:contentDescription="@string/refresh" />
+        android:contentDescription="@string/refresh"
+        app:backgroundTint="@color/Teal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
