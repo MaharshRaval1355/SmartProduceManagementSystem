@@ -16,11 +16,11 @@ public class DashboardFragment extends Fragment {
 
     // Define the array of greetings
     private String[] greetings = {
-            "Hello there, looks like it's gonna be a great day!",
-            "Good day! Ready to manage your inventory?",
-            "Hello! All systems operational.",
-            "Welcome back! Your insights are ready.",
-            "Hi there, time to check today’s metrics!"
+            "Hello there,\nlooks like it's gonna be a great day!",
+            "Good day!\nReady to manage your inventory?",
+            "Hello!\nAll systems operational.",
+            "Welcome back!\nYour insights are ready.",
+            "Hi there,\ntime to check today’s metrics!"
     };
 
     // Define the array of alert messages
