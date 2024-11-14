@@ -47,7 +47,7 @@ public class DashboardFragment extends Fragment {
     };
 
     private TextView greetingTextView, alertDetails, stockDetails, sensorDetails;
-    private boolean isAlertsExpanded = false, isStockExpanded = false, isSensorsExpanded = false;
+    private String randomAlert, randomStock, randomSensor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,48 +58,37 @@ public class DashboardFragment extends Fragment {
         stockDetails = view.findViewById(R.id.stockDetails);
         sensorDetails = view.findViewById(R.id.sensorDetails);
 
-        // Alert Card Initialization
+        randomAlert = getRandomMessages(alertMessages, 2);
+        randomStock = getRandomMessages(stockMessages, 3);
+        randomSensor = getRandomMessages(sensorMessages, 2);
+
+        // Initialize cards with onClickListeners
         CardView alertCard = view.findViewById(R.id.alertCard);
-        alertCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleDetails(alertDetails, getRandomMessages(alertMessages, 2));
-            }
-        });
+        alertCard.setOnClickListener(v -> toggleExclusiveDetails(alertDetails, randomAlert, stockDetails, sensorDetails));
 
-        // Stock Card Initialization
         CardView stockCard = view.findViewById(R.id.stockCard);
-        stockCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleDetails(stockDetails, getRandomMessages(stockMessages, 3));
-            }
-        });
+        stockCard.setOnClickListener(v -> toggleExclusiveDetails(stockDetails, randomStock, alertDetails, sensorDetails));
 
-        // Sensor Card Initialization
         CardView sensorCard = view.findViewById(R.id.sensorCard);
-        sensorCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleDetails(sensorDetails, getRandomMessages(sensorMessages, 2));
-            }
-        });
+        sensorCard.setOnClickListener(v -> toggleExclusiveDetails(sensorDetails, randomSensor, alertDetails, stockDetails));
+
+        updateGreeting();  // Set a random greeting
 
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateGreeting();
-    }
-
-    private void toggleDetails(TextView detailsView, String message) {
-        if (detailsView.getVisibility() == View.VISIBLE) {
+    private void toggleExclusiveDetails(TextView currentDetailsView, String message, TextView... otherDetailsViews) {
+        // Collapse all other details views
+        for (TextView detailsView : otherDetailsViews) {
             detailsView.setVisibility(View.GONE);
+        }
+
+        // Toggle the visibility of the current details view
+        if (currentDetailsView.getVisibility() == View.VISIBLE) {
+            currentDetailsView.setVisibility(View.GONE);
         } else {
-            detailsView.setVisibility(View.VISIBLE);
-            detailsView.setText(message);
+            currentDetailsView.setText(message);
+            currentDetailsView.setVisibility(View.VISIBLE);
         }
     }
 
