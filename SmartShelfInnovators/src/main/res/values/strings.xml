@@ -11,9 +11,9 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="not_yet_registered_sign_up">"not yet registered? Sign Up "</string>
+    <string name="not_yet_registered_sign_up">"Not yet registered? Sign Up!"</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_an_user_login">Already an user? login</string>
+    <string name="already_an_user_login">Already a user? Login instead!</string>
     <string name="welcome_message">SmartSelf Innovators</string>
     <string name="or">Or</string>
     <string name="sign_in_with_google">Sign in with Google</string>
@@ -31,4 +31,7 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="log_out">Log Out</string>
     <string name="language">Language</string>
+    <string name="alert_icon_description">Alert_Icon</string>
+    <string name="sensor_icon_description">Sensor_Icon</string>
+    <string name="refresh">REFRESH</string>
 </resources>
