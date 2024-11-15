@@ -96,7 +96,7 @@ public class DashboardFragment extends Fragment {
     private void randomizeContent() {
         alertDetails.setText(getRandomMessages(alertMessages, 2));
         stockDetails.setText(getRandomMessages(stockMessages, 3));
-        sensorDetails.setText(getRandomMessages(sensorMessages, 2));
+        sensorDetails.setText(getRandomMessages(sensorMessages, 3));
     }
 
     private void updateGreeting() {
