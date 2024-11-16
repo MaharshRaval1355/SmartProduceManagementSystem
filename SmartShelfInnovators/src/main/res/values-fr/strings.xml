@@ -32,7 +32,4 @@
     <string name="dark_mode">Mode sombre</string>
     <string name="log_out">Déconnexion</string>
     <string name="language">Langue</string>
-    <string name="alert_icon_description">!!!</string>
-    <string name="sensor_icon_description">!!!</string>
-    <string name="refresh">REFRESH</string>
 </resources>
