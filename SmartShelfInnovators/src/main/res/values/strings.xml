@@ -35,4 +35,10 @@
     <string name="alert_icon_description">Alert_Icon</string>
     <string name="sensor_icon_description">Sensor_Icon</string>
     <string name="refresh">REFRESH</string>
+    <string name="userprefs">UserPrefs</string>
+    <string name="loggedin">loggedIn</string>
+    <string name="settingsprefs">SettingsPrefs</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="users">Users</string>
 </resources>

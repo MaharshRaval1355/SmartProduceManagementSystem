@@ -34,6 +34,12 @@
     <string name="language">Langue</string>
     <string name="alert_icon_description">!!!</string>
     <string name="sensor_icon_description">!!!</string>
-    <string name="refresh">REFRESH</string>
-    <string name="remember_me">Remember me?</string>
+    <string name="refresh">RAFRAÎCHIR</string>
+    <string name="remember_me">Souvenez-vous de moi?</string>
+    <string name="userprefs">UserPrefs</string>
+    <string name="loggedin">loggedIn</string>
+    <string name="settingsprefs">ParamètresPrefs</string>
+    <string name="name">nom</string>
+    <string name="phone">Téléphone</string>
+    <string name="users">Utilisateurs</string>
 </resources>

@@ -89,13 +89,13 @@ public class SignUp extends AppCompatActivity {
 
                             // Create a map to store user information
                             Map<String, Object> user = new HashMap<>();
-                            user.put("name", name);
-                            user.put("email", email);
-                            user.put("phone", phone);
-                            user.put("password", password); // Note: storing plain text password is not secure
+                            user.put(getString(R.string.name), name);
+                            user.put(getString(R.string.email), email);
+                            user.put(getString(R.string.phone), phone);
+                            user.put(getString(R.string.password), password);
 
                             // Store user information in Firestore
-                            firestore.collection("Users").document(userId).set(user)
+                            firestore.collection(getString(R.string.users)).document(userId).set(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

@@ -126,21 +126,21 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean isUserLoggedIn() {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        return sharedPreferences.getBoolean("loggedIn", false); // Check if the "loggedIn" flag is true
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
+        return sharedPreferences.getBoolean(getString(R.string.loggedin), false); // Check if the "loggedIn" flag is true
     }
 
     private void saveLoginState(String email, String password) {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("loggedIn", true); // Save login state
-        editor.putString("email", email);
-        editor.putString("password", password);
+        editor.putBoolean(getString(R.string.loggedin), true); // Save login state
+        editor.putString(getString(R.string.email), email);
+        editor.putString(getString(R.string.password), password);
         editor.apply();
     }
 
     private void clearLoginState() {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear(); // Clear all saved preferences
         editor.apply();

@@ -51,8 +51,8 @@ public class SplashActivity extends AppCompatActivity {
         FirebaseUser currentUser = auth.getCurrentUser();
 
         // Check if the user is logged in and "Remember Me" is checked
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        boolean rememberMeChecked = sharedPreferences.contains("email") && sharedPreferences.contains("password");
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
+        boolean rememberMeChecked = sharedPreferences.contains(getString(R.string.email)) && sharedPreferences.contains(getString(R.string.password));
 
         if (currentUser != null && rememberMeChecked) {
             // User is logged in, navigate directly to MainActivity
