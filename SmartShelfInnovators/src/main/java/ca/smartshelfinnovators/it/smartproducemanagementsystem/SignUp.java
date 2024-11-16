@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -36,6 +37,13 @@ public class SignUp extends AppCompatActivity {
         // Initialize Firebase Auth and Firestore
         auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser != null) {
+            // User is already logged in, navigate to MainActivity
+            startActivity(new Intent(SignUp.this, MainActivity.class));
+            finish();
+        }
 
         // Initialize UI elements
         signupEmail = findViewById(R.id.signup_email);

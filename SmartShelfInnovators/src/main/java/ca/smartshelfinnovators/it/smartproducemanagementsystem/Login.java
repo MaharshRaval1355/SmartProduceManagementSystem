@@ -42,6 +42,15 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Check if the user is already logged in
+        if (isUserLoggedIn()) {
+            // Navigate directly to the main screen
+            startActivity(new Intent(Login.this, MainActivity.class));
+            finish();
+            return; // Skip the rest of onCreate
+        }
+
         setContentView(R.layout.activity_login);
 
         loginEmail = findViewById(R.id.login_email);
@@ -51,9 +60,6 @@ public class Login extends AppCompatActivity {
         googleSignInButton = findViewById(R.id.googleSignInButton);
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         auth = FirebaseAuth.getInstance();
-
-        // Load saved credentials if available
-        loadCredentials();
 
         // Initialize Google Sign-In options
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -77,11 +83,9 @@ public class Login extends AppCompatActivity {
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
 
-                                        // Save credentials if "Remember Me" is checked
+                                        // Save login state if "Remember Me" is checked
                                         if (rememberMeCheckBox.isChecked()) {
-                                            saveCredentials(email, pass);
-                                        } else {
-                                            clearCredentials();
+                                            saveLoginState(email, pass);
                                         }
 
                                         startActivity(new Intent(Login.this, MainActivity.class));
@@ -121,30 +125,24 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void loadCredentials() {
+    private boolean isUserLoggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String email = sharedPreferences.getString("email", "");
-        String password = sharedPreferences.getString("password", "");
-        if (!email.isEmpty()) {
-            loginEmail.setText(email);
-            loginPassword.setText(password);
-            rememberMeCheckBox.setChecked(true); // Automatically check the box if credentials are loaded
-        }
+        return sharedPreferences.getBoolean("loggedIn", false); // Check if the "loggedIn" flag is true
     }
 
-    private void saveCredentials(String email, String password) {
+    private void saveLoginState(String email, String password) {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("loggedIn", true); // Save login state
         editor.putString("email", email);
         editor.putString("password", password);
         editor.apply();
     }
 
-    private void clearCredentials() {
+    private void clearLoginState() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("email");
-        editor.remove("password");
+        editor.clear(); // Clear all saved preferences
         editor.apply();
     }
 
@@ -172,6 +170,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
                             Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
+                            saveLoginState(user.getEmail(), null); // Save login state for Google users
                             startActivity(new Intent(Login.this, MainActivity.class));
                             finish();
                         } else {
