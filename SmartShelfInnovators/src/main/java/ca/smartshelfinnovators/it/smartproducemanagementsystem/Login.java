@@ -29,6 +29,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 public class Login extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100; // Request code for Google Sign-In
@@ -74,6 +78,18 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String email = loginEmail.getText().toString();
                 String pass = loginPassword.getText().toString();
+
+                // Validate email
+                if (!isValidEmail(email)) {
+                    loginEmail.setError(getString(R.string.please_enter_correct_email));
+                    return;
+                }
+
+                // Validate password
+                if (!isValidPassword(pass)) {
+                    loginPassword.setError(getString(R.string.invalid_password_format));
+                    return;
+                }
 
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     if (!pass.isEmpty()) {
@@ -124,6 +140,29 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
+    // email validation  using regex
+    private boolean isValidEmail(String email) {
+        // Simple email validation regex pattern
+        String emailPattern = getString(R.string.regex_email_validation);
+        Pattern pattern = Pattern.compile(emailPattern);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // password validation using regex
+    private boolean isValidPassword(String password) {
+        // Password validation regex pattern:
+        // - At least 6 characters
+        // - At least one uppercase letter
+        // - At least one digit
+        // - At least one special character
+        String passwordPattern = getString(R.string.regex_password_validation);
+        Pattern pattern = Pattern.compile(passwordPattern);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
 
     private boolean isUserLoggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);

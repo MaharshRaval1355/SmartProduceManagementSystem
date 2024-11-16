@@ -9,6 +9,7 @@
     <string name="login_failed">Échec de la connexion</string>
     <string name="empty_fields_are_not_allowed">Les champs vides ne sont pas autorisés</string>
     <string name="please_enter_correct_email">Veuillez entrer l’adresse e-mail correcte</string>
+    <string name="invalid_password_format">Le mot de passe doit comporter au moins 6 caractères, inclure un chiffre, un caractère spécial et une lettre majuscule.</string>
     <string name="login">Connectez-vous</string>
     <string name="email">Messagerie électronique</string>
     <string name="password">Mot de passe</string>
