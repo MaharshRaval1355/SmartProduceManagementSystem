@@ -43,4 +43,10 @@
     <string name="name">nom</string>
     <string name="phone">Téléphone</string>
     <string name="users">Utilisateurs</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="invalid_email">Veuillez saisir une adresse e-mail valide</string>
+    <string name="invalid_password">Le mot de passe doit comporter au moins 6 caractères, inclure un chiffre, un caractère spécial et une lettre majuscule.</string>
+    <string name="confirm_password_cannot_be_empty">Confirmez votre mot de passe</string>
+    <string name="passwords_must_match">Le mot de passe ne correspond pas</string>
+    <string name="invalid_phone_number">Numéro de téléphone non valide</string>
 </resources>

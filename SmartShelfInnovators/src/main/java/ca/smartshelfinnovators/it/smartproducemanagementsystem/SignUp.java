@@ -20,12 +20,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseFirestore firestore; // Firestore instance
-    private EditText signupEmail, signupPassword, userName, phoneNumber;
+    private EditText signupEmail, signupPassword, userName, phoneNumber, confirmPassword;
     private Button signupButton;
     private TextView loginRedirectText;
 
@@ -48,6 +50,7 @@ public class SignUp extends AppCompatActivity {
         // Initialize UI elements
         signupEmail = findViewById(R.id.signup_email);
         signupPassword = findViewById(R.id.signup_password);
+        confirmPassword = findViewById(R.id.confirm_password);
         userName = findViewById(R.id.user_name); // Full name EditText
         phoneNumber = findViewById(R.id.phone_number); // Phone number EditText
         signupButton = findViewById(R.id.signup_button);
@@ -58,6 +61,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 String email = signupEmail.getText().toString().trim();
                 String password = signupPassword.getText().toString().trim();
+                String confirmPass = confirmPassword.getText().toString().trim();
                 String name = userName.getText().toString().trim(); // Get full name
                 String phone = phoneNumber.getText().toString().trim(); // Get phone number
 
@@ -66,8 +70,24 @@ public class SignUp extends AppCompatActivity {
                     signupEmail.setError(getString(R.string.email_cannot_be_empty));
                     return;
                 }
+                if (!isValidEmail(email)) {
+                    signupEmail.setError(getString(R.string.invalid_email));
+                    return;
+                }
                 if (password.isEmpty()) {
                     signupPassword.setError(getString(R.string.password_cannot_be_empty));
+                    return;
+                }
+                if (!isValidPassword(password)) {
+                    signupPassword.setError(getString(R.string.invalid_password));
+                    return;
+                }
+                if (confirmPass.isEmpty()) {
+                    confirmPassword.setError(getString(R.string.confirm_password_cannot_be_empty));
+                    return;
+                }
+                if (!password.equals(confirmPass)) {
+                    confirmPassword.setError(getString(R.string.passwords_must_match));
                     return;
                 }
                 if (name.isEmpty()) {
@@ -76,6 +96,10 @@ public class SignUp extends AppCompatActivity {
                 }
                 if (phone.isEmpty()) {
                     phoneNumber.setError(getString(R.string.phone_number_cannot_be_empty));
+                    return;
+                }
+                if (!isValidPhone(phone)) {
+                    phoneNumber.setError(getString(R.string.invalid_phone_number));
                     return;
                 }
 
@@ -108,7 +132,7 @@ public class SignUp extends AppCompatActivity {
                                         }
                                     });
                         } else {
-                            Toast.makeText(SignUp.this,getString(R.string.signup_failed) + task.getException().getMessage() , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, getString(R.string.signup_failed) + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -121,5 +145,26 @@ public class SignUp extends AppCompatActivity {
                 startActivity(new Intent(SignUp.this, Login.class));
             }
         });
+    }
+
+    // Validate Email format using regex
+    private boolean isValidEmail(String email) {
+        String emailRegex =getString(R.string.regex_email_validation);
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // Validate Password format (at least 8 characters, uppercase, lowercase, number, and special character)
+    private boolean isValidPassword(String password) {
+        String passwordRegex =getString(R.string.regex_password_validation);
+        Pattern pattern = Pattern.compile(passwordRegex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    // Validate Phone Number (exactly 10 digits)
+    private boolean isValidPhone(String phone) {
+        return phone.length() == 10 && phone.matches(getString(R.string.d_10));
     }
 }
