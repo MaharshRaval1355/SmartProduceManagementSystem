@@ -12,9 +12,9 @@
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="not_yet_registered_sign_up">"Not yet registered? Sign Up!"</string>
+    <string name="not_yet_registered_sign_up">"not yet registered? Sign Up "</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_an_user_login">Already a user? Login instead!</string>
+    <string name="already_an_user_login">Already an user? login</string>
     <string name="welcome_message">SmartSelf Innovators</string>
     <string name="or">Or</string>
     <string name="sign_in_with_google">Sign in with Google</string>
@@ -51,4 +51,7 @@
     <string name="passwords_must_match">Password didn\'t Match</string>
     <string name="invalid_phone_number">Invalid Phone Number</string>
     <string name="d_10" translatable="false">\\d{10}</string>
+    <string name="darkmodekey">dark_mode</string>
+    <string name="lockScreenKey">lock_screen</string>
+    <string name="settingsprefs">SettingsPrefs</string>
 </resources>

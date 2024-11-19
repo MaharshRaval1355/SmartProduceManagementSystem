@@ -49,4 +49,8 @@
     <string name="confirm_password_cannot_be_empty">Confirmez votre mot de passe</string>
     <string name="passwords_must_match">Le mot de passe ne correspond pas</string>
     <string name="invalid_phone_number">Numéro de téléphone non valide</string>
+    <string name="darkmodekey">dark_mode</string>
+    <string name="lockScreenKey">lock_screen</string>
+    <string name="settingsprefs">SettingsPrefs</string>
+
 </resources>
