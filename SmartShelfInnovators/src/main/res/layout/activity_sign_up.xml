@@ -54,7 +54,7 @@
                 android:layout_marginTop="25dp"
                 android:padding="8dp"
                 android:hint="@string/email"
-                android:drawableStart="@drawable/person"
+                android:drawableStart="@drawable/email"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
 
@@ -64,7 +64,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/custom_edittext"
-                android:drawableStart="@drawable/person"
+                android:drawableStart="@drawable/phone"
                 android:drawablePadding="8dp"
                 android:hint="@string/phone_number"
                 android:inputType="phone"
@@ -79,6 +79,18 @@
                 android:layout_marginTop="25dp"
                 android:padding="8dp"
                 android:hint="@string/password"
+                android:drawableStart="@drawable/lock"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/confirm_password"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="25dp"
+                android:padding="8dp"
+                android:hint="@string/confirm_password"
                 android:drawableStart="@drawable/lock"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>

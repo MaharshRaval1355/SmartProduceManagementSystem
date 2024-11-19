@@ -1,12 +1,15 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 public class Login extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100; // Request code for Google Sign-In
@@ -34,10 +41,20 @@ public class Login extends AppCompatActivity {
     private Button loginButton, googleSignInButton;
     private FirebaseAuth auth;
     private GoogleSignInClient googleSignInClient;
+    private CheckBox rememberMeCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Check if the user is already logged in
+        if (isUserLoggedIn()) {
+            // Navigate directly to the main screen
+            startActivity(new Intent(Login.this, MainActivity.class));
+            finish();
+            return; // Skip the rest of onCreate
+        }
+
         setContentView(R.layout.activity_login);
 
         loginEmail = findViewById(R.id.login_email);
@@ -45,6 +62,7 @@ public class Login extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         signupRedirectText = findViewById(R.id.signUpRedirectText);
         googleSignInButton = findViewById(R.id.googleSignInButton);
+        rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         auth = FirebaseAuth.getInstance();
 
         // Initialize Google Sign-In options
@@ -61,6 +79,18 @@ public class Login extends AppCompatActivity {
                 String email = loginEmail.getText().toString();
                 String pass = loginPassword.getText().toString();
 
+                // Validate email
+                if (!isValidEmail(email)) {
+                    loginEmail.setError(getString(R.string.please_enter_correct_email));
+                    return;
+                }
+
+                // Validate password
+                if (!isValidPassword(pass)) {
+                    loginPassword.setError(getString(R.string.invalid_password_format));
+                    return;
+                }
+
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     if (!pass.isEmpty()) {
                         auth.signInWithEmailAndPassword(email, pass)
@@ -68,6 +98,12 @@ public class Login extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
+
+                                        // Save login state if "Remember Me" is checked
+                                        if (rememberMeCheckBox.isChecked()) {
+                                            saveLoginState(email, pass);
+                                        }
+
                                         startActivity(new Intent(Login.this, MainActivity.class));
                                         finish();
                                     }
@@ -105,6 +141,50 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    // email validation  using regex
+    private boolean isValidEmail(String email) {
+        // Simple email validation regex pattern
+        String emailPattern = getString(R.string.regex_email_validation);
+        Pattern pattern = Pattern.compile(emailPattern);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // password validation using regex
+    private boolean isValidPassword(String password) {
+        // Password validation regex pattern:
+        // - At least 6 characters
+        // - At least one uppercase letter
+        // - At least one digit
+        // - At least one special character
+        String passwordPattern = getString(R.string.regex_password_validation);
+        Pattern pattern = Pattern.compile(passwordPattern);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+
+    private boolean isUserLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
+        return sharedPreferences.getBoolean(getString(R.string.loggedin), false); // Check if the "loggedIn" flag is true
+    }
+
+    private void saveLoginState(String email, String password) {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(getString(R.string.loggedin), true); // Save login state
+        editor.putString(getString(R.string.email), email);
+        editor.putString(getString(R.string.password), password);
+        editor.apply();
+    }
+
+    private void clearLoginState() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // Clear all saved preferences
+        editor.apply();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,6 +209,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
                             Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
+                            saveLoginState(user.getEmail(), null); // Save login state for Google users
                             startActivity(new Intent(Login.this, MainActivity.class));
                             finish();
                         } else {

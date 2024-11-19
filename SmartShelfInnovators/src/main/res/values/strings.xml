@@ -7,7 +7,8 @@
     <string name="login_successful">Login Successful</string>
     <string name="login_failed">Login failed</string>
     <string name="empty_fields_are_not_allowed">Empty fields are not allowed</string>
-    <string name="please_enter_correct_email">Please Enter Correct Email</string>
+    <string name="please_enter_correct_email">Please Enter a valid email address</string>
+    <string name="invalid_password_format">Password must be least 6 characters, include a digit, a special character, and an uppercase letter.</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -25,12 +26,31 @@
     <string name="phone_number">Phone Number</string>
     <string name="splash_title">Smart Produce Management System</string>
     <string name="smartshelf_innovators">SmartShelf Innovators</string>
+    <string name="remember_me">Remember me?</string>
     <string name="settings">Settings</string>
     <string name="lock_screen">Lock Screen</string>
     <string name="notifications">Notifications</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="log_out">Log Out</string>
     <string name="language">Language</string>
+    <string name="alert_icon_description">Alert_Icon</string>
+    <string name="sensor_icon_description">Sensor_Icon</string>
+    <string name="refresh">REFRESH</string>
+    <string name="userprefs">UserPrefs</string>
+    <string name="loggedin">loggedIn</string>
+    <string name="settingsprefs">SettingsPrefs</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="users">Users</string>
+    <string name="regex_email_validation" translatable="false">^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</string>
+    <string name="regex_password_validation" translatable="false"><![CDATA[^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$]]></string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="invalid_email">Please enter a valid email</string>
+    <string name="invalid_password">Password must be least 6 characters, include a digit, a special character, and an uppercase letter.</string>
+    <string name="confirm_password_cannot_be_empty">Confirm Your Password</string>
+    <string name="passwords_must_match">Password didn\'t Match</string>
+    <string name="invalid_phone_number">Invalid Phone Number</string>
+    <string name="d_10" translatable="false">\\d{10}</string>
     <string name="settingsprefs">SettingsPrefs</string>
     <string name="darkModeKey">dark_mode</string>
     <string name="lockScreenKey">lock_screen</string>
