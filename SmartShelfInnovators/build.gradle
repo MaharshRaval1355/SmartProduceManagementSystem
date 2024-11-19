@@ -31,20 +31,27 @@ android {
 
 dependencies {
 
+    // Firebase BOM to manage Firebase versions
+    implementation platform('com.google.firebase:firebase-bom:32.1.1')
+
+    // Firebase dependencies
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation "com.google.firebase:firebase-auth:21.0.3"
+    implementation "com.google.firebase:firebase-database:20.3.0"
+
+    // Other dependencies
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
-    implementation libs.firebase.auth
-    implementation libs.firebase.auth
+
+    // Testing dependencies
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
-    implementation libs.material
+    // Google Play Services (Auth)
     implementation "com.google.android.gms:play-services-auth:20.4.1"
-    implementation "com.google.firebase:firebase-auth:21.0.3"
-    implementation "com.google.firebase:firebase-database:20.3.0"
-
-
 }
+
+apply plugin: 'com.google.gms.google-services'
