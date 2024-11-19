@@ -37,7 +37,7 @@ public class SettingsFragment extends Fragment {
 
 
 
-        isDarkModeEnabled = sharedPreferences.getBoolean(getString(R.string.darkmodekey), false);
+        isDarkModeEnabled = sharedPreferences.getBoolean(getString(R.string.darkModeKey), false);
 
         isLockScreenPortrait = sharedPreferences.getBoolean(getString(R.string.lockScreenKey), false);
 
@@ -52,7 +52,7 @@ public class SettingsFragment extends Fragment {
 
 
 
-            editor.putBoolean(getString(R.string.darkmodekey), isChecked);
+            editor.putBoolean(getString(R.string.darkModeKey), isChecked);
 
 
             editor.apply();

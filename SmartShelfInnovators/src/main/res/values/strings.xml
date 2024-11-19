@@ -38,7 +38,6 @@
     <string name="refresh">REFRESH</string>
     <string name="userprefs">UserPrefs</string>
     <string name="loggedin">loggedIn</string>
-    <string name="settingsprefs">SettingsPrefs</string>
     <string name="name">name</string>
     <string name="phone">phone</string>
     <string name="users">Users</string>
@@ -51,10 +50,7 @@
     <string name="passwords_must_match">Password didn\'t Match</string>
     <string name="invalid_phone_number">Invalid Phone Number</string>
     <string name="d_10" translatable="false">\\d{10}</string>
-    <string name="settingsprefs">SettingsPrefs</string>
     <string name="darkModeKey">dark_mode</string>
-    <string name="lockScreenKey">lock_screen</string>
-    <string name="darkmodekey">dark_mode</string>
     <string name="lockScreenKey">lock_screen</string>
     <string name="settingsprefs">SettingsPrefs</string>
 </resources>
