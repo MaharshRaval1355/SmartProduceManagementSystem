@@ -31,11 +31,11 @@ public class SettingsFragment extends Fragment {
         lockScreenSwitch = view.findViewById(R.id.lockScreen_switch);
 
         getContext();
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("SettingsPrefs", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(getString(R.string.settingsprefs), Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        isDarkModeEnabled = sharedPreferences.getBoolean("dark_mode", false);
-        isLockScreenPortrait = sharedPreferences.getBoolean("lock_screen", false);
+        isDarkModeEnabled = sharedPreferences.getBoolean(getString(R.string.darkModeKey), false);
+        isLockScreenPortrait = sharedPreferences.getBoolean(getString(R.string.lockScreenKey), false);
 
         darkModeSwitch.setChecked(isDarkModeEnabled);
         lockScreenSwitch.setChecked(isLockScreenPortrait);
@@ -44,13 +44,13 @@ public class SettingsFragment extends Fragment {
         applyLockScreenMode(isLockScreenPortrait);
 
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            editor.putBoolean("dark_mode", isChecked);
+            editor.putBoolean(getString(R.string.darkModeKey), isChecked);
             editor.apply();
             applyDarkMode(isChecked);
         });
 
         lockScreenSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            editor.putBoolean("lock_screen", isChecked);
+            editor.putBoolean(getString(R.string.lockScreenKey), isChecked);
             editor.apply();
             applyLockScreenMode(isChecked);
         });
