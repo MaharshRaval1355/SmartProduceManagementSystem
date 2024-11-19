@@ -36,9 +36,11 @@ public class SettingsFragment extends Fragment {
 
 
 
+
         isDarkModeEnabled = sharedPreferences.getBoolean(getString(R.string.darkmodekey), false);
 
         isLockScreenPortrait = sharedPreferences.getBoolean(getString(R.string.lockScreenKey), false);
+
 
         darkModeSwitch.setChecked(isDarkModeEnabled);
         lockScreenSwitch.setChecked(isLockScreenPortrait);
@@ -49,14 +51,18 @@ public class SettingsFragment extends Fragment {
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
 
+
             editor.putBoolean(getString(R.string.darkmodekey), isChecked);
+
 
             editor.apply();
             applyDarkMode(isChecked);
         });
 
         lockScreenSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            editor.putBoolean(getString(R.string.lockScreenKey), isChecked);
+
+            editor.putBoolean(getString(R.string.lock_screen), isChecked);
+
             editor.apply();
             applyLockScreenMode(isChecked);
         });
