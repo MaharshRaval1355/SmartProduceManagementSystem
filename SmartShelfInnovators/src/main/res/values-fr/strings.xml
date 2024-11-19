@@ -35,4 +35,5 @@
     <string name="darkmodekey">dark_mode</string>
     <string name="lockScreenKey">lock_screen</string>
     <string name="settingsprefs">SettingsPrefs</string>
+
 </resources>
