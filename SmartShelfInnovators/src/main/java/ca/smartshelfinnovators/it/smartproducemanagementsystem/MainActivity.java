@@ -17,6 +17,9 @@ import ca.smartshelfinnovators.it.smartproducemanagementsystem.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String CURRENT_FRAGMENT = "current_fragment";
+    private int selectedItemId = R.id.menu_dashboard; // default start with dashboard
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +28,18 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);
 
-        // Set the default fragment to Dashboard
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new DashboardFragment()).commit();
+        if (savedInstanceState != null) {
+            // Restore the last state for checked position.
+            selectedItemId = savedInstanceState.getInt(CURRENT_FRAGMENT, R.id.menu_dashboard);
+        }
+
+        bottomNav.setSelectedItemId(selectedItemId); // Set the saved item as selected
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CURRENT_FRAGMENT, selectedItemId);
     }
 
     // Bottom Navigation Listener using the updated if-else logic
@@ -39,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
                     // Use if-else instead of switch-case to handle item selection
                     int itemId = item.getItemId();
+                    selectedItemId = itemId; // Update the last selected item id
+
                     if (itemId == R.id.menu_dashboard) {
                         selectedFragment = new DashboardFragment();
                     } else if (itemId == R.id.menu_regulators) {
