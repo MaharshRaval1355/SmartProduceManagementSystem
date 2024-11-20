@@ -29,7 +29,7 @@
         android:id="@+id/logOut_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="201dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="sans-serif-medium"
@@ -43,10 +43,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/language_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/feedback_textview" />
 
     <TextView
-        android:id="@+id/language_textview"
+        android:id="@+id/feedback_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -54,7 +54,7 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center_vertical"
         android:padding="16dp"
-        android:text="@string/language"
+        android:text="@string/feedback"
         android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="sans"
@@ -68,7 +68,6 @@
         android:id="@+id/notification_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="sans-serif-medium"
@@ -80,15 +79,14 @@
         android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@+id/lockScreen_switch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Settings_textview" />
+        app:layout_constraintTop_toBottomOf="@id/profile_picture" />
 
     <TextView
         android:id="@+id/Settings_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-black"
         android:lineSpacingExtra="14sp"
         android:linksClickable="false"
@@ -100,7 +98,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="38sp"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/notification_textview"
+        app:layout_constraintBottom_toTopOf="@+id/profile_picture"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -119,12 +117,56 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/language_textview"
+        app:layout_constraintBottom_toTopOf="@+id/feedback_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lockScreen_switch"
         tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
+
+    <ImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="123dp"
+        android:layout_height="127dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/notification_textview"
+        app:layout_constraintEnd_toStartOf="@+id/user_position"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Settings_textview"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="144dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/textview"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_position"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/Settings_textview"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/user_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/employee"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/notification_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
