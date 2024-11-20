@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SettingsFragment extends Fragment {
 
     View view;
-    protected TextView userNameTV;
+    protected TextView userNameTV, feedbackTV;
     protected SharedPreferences.Editor editor;
     protected Switch lockScreenSwitch;
     protected Switch darkModeSwitch;
@@ -68,6 +68,17 @@ public class SettingsFragment extends Fragment {
             editor.putBoolean(getString(R.string.lock_screen), isChecked);
             editor.apply();
             applyLockScreenMode(isChecked);
+        });
+
+        // Find the Feedback TextView
+        feedbackTV = view.findViewById(R.id.feedback_textview);
+
+        // Set the click listener to open FeedbackFragment
+        feedbackTV.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new FeedbackFragment()) // Replace with your fragment container ID
+                    .addToBackStack(null) // Adds this transaction to the back stack for back navigation
+                    .commit();
         });
 
         return view;
