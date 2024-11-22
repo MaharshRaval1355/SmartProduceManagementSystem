@@ -32,13 +32,12 @@
     <string name="notifications">Notifications</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="log_out">Log Out</string>
-    <string name="language">Language</string>
+    <string name="feedback">Feedback</string>
     <string name="alert_icon_description">Alert_Icon</string>
     <string name="sensor_icon_description">Sensor_Icon</string>
     <string name="refresh">REFRESH</string>
     <string name="userprefs">UserPrefs</string>
     <string name="loggedin">loggedIn</string>
-    <string name="settingsprefs">SettingsPrefs</string>
     <string name="name">name</string>
     <string name="phone">phone</string>
     <string name="users">Users</string>
@@ -51,10 +50,11 @@
     <string name="passwords_must_match">Password didn\'t Match</string>
     <string name="invalid_phone_number">Invalid Phone Number</string>
     <string name="d_10" translatable="false">\\d{10}</string>
-    <string name="settingsprefs">SettingsPrefs</string>
     <string name="darkModeKey">dark_mode</string>
     <string name="lockScreenKey">lock_screen</string>
-    <string name="darkmodekey">dark_mode</string>
-    <string name="lockScreenKey">lock_screen</string>
     <string name="settingsprefs">SettingsPrefs</string>
+    <string name="no_user_logged_in">No user logged in</string>
+    <string name="guest_user">Guest user</string>
+    <string name="textview">TextView</string>
+    <string name="employee">Employee</string>
 </resources>
