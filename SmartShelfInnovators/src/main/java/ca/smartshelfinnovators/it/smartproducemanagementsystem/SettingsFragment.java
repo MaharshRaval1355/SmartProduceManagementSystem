@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
@@ -29,8 +26,8 @@ public class SettingsFragment extends Fragment {
     protected boolean isDarkModeEnabled;
     protected boolean isLockScreenPortrait;
 
-  @override   
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -104,4 +101,3 @@ public class SettingsFragment extends Fragment {
         }
     }
 }
-
