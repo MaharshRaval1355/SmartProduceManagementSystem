@@ -35,6 +35,5 @@ public class RegulatorsFragment extends Fragment {
             countTextView.setText("Regulators Count: " + regulatorCount);
             Toast.makeText(getContext(), "Regulator Added! Total: " + regulatorCount, Toast.LENGTH_SHORT).show();
         });
-    }
 }
 

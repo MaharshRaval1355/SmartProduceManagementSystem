@@ -16,6 +16,7 @@ public class InventoryFragment extends Fragment {
     private ListView inventoryListView;
 
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inventory, container, false);
@@ -51,6 +52,5 @@ public class InventoryFragment extends Fragment {
             String selectedItem = inventoryItems[position];
             Toast.makeText(requireContext(), "Selected: " + selectedItem, Toast.LENGTH_SHORT).show();
         });
-    }
 }
 

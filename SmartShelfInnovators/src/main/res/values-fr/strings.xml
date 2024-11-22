@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SmartProduceManagementSystem</string>
+    <string name="app_name">Système intelligent de gestion des produits</string>
     <string name="email_cannot_be_empty">L’e-mail ne peut pas être vide</string>
     <string name="password_cannot_be_empty">Le mot de passe ne peut pas être vide</string>
     <string name="signup_successful">Inscription réussie</string>
@@ -9,6 +9,7 @@
     <string name="login_failed">Échec de la connexion</string>
     <string name="empty_fields_are_not_allowed">Les champs vides ne sont pas autorisés</string>
     <string name="please_enter_correct_email">Veuillez entrer l’adresse e-mail correcte</string>
+    <string name="invalid_password_format">Le mot de passe doit comporter au moins 6 caractères, inclure un chiffre, un caractère spécial et une lettre majuscule.</string>
     <string name="login">Connectez-vous</string>
     <string name="email">Messagerie électronique</string>
     <string name="password">Mot de passe</string>
@@ -16,14 +17,43 @@
     <string name="sign_up">S’enregistrer</string>
     <string name="already_an_user_login">Vous êtes déjà un utilisateur ? connectez-vous</string>
     <string name="welcome_message">SmartSelf Innovators</string>
-    <string name="or">Or</string>
-    <string name="sign_in_with_google">Sign in with Google</string>
-    <string name="default_web_client_id">Default Web Client Id</string>
-    <string name="google_sign_in_failed">"Google Sign in Failed "</string>
-    <string name="full_name">Full Name</string>
-    <string name="full_name_cannot_be_empty">Name can\'t be empty</string>
-    <string name="phone_number_cannot_be_empty">number can\'t be empty</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="splash_title">Smart Produce Management System</string>
-    <string name="smartshelf_innovators">SmartShelf Innovators</string>
+    <string name="or">Ou</string>
+    <string name="sign_in_with_google">Se connecter avec Google</string>
+    <string name="default_web_client_id">ID client Web par défaut</string>
+    <string name="google_sign_in_failed">Échec de la connexion Google</string>
+    <string name="full_name">Nom complet</string>
+    <string name="full_name_cannot_be_empty">Le nom ne peut pas être vide</string>
+    <string name="phone_number_cannot_be_empty">Le numéro ne peut pas être vide</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="splash_title">Système intelligent de gestion des produits</string>
+    <string name="smartshelf_innovators">Innovateurs SmartShelf</string>
+    <string name="settings">Paramètres</string>
+    <string name="lock_screen">Écran de verrouillage</string>
+    <string name="notifications">Notifications</string>
+    <string name="dark_mode">Mode sombre</string>
+    <string name="log_out">Déconnexion</string>
+    <string name="alert_icon_description">!!!</string>
+    <string name="sensor_icon_description">!!!</string>
+    <string name="refresh">RAFRAÎCHIR</string>
+    <string name="remember_me">Souvenez-vous de moi?</string>
+    <string name="userprefs">UserPrefs</string>
+    <string name="loggedin">loggedIn</string>
+    <string name="settingsprefs">ParamètresPrefs</string>
+    <string name="name">nom</string>
+    <string name="phone">Téléphone</string>
+    <string name="users">Utilisateurs</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="invalid_email">Veuillez saisir une adresse e-mail valide</string>
+    <string name="invalid_password">Le mot de passe doit comporter au moins 6 caractères, inclure un chiffre, un caractère spécial et une lettre majuscule.</string>
+    <string name="confirm_password_cannot_be_empty">Confirmez votre mot de passe</string>
+    <string name="passwords_must_match">Le mot de passe ne correspond pas</string>
+    <string name="invalid_phone_number">Numéro de téléphone non valide</string>
+    <string name="lockScreenKey">lock_screen</string>
+    <string name="darkModeKey">dark_mode</string>
+    <string name="d_10" translatable="false">\\d{10}</string>
+    <string name="feedback">Feedback</string>
+    <string name="no_user_logged_in">No user logged in</string>
+    <string name="guest_user">Guest user</string>
+    <string name="textview">TextView</string>
+    <string name="employee">Employee</string>
 </resources>
