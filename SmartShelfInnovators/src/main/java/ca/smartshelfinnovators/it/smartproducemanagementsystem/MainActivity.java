@@ -19,7 +19,7 @@ import ca.smartshelfinnovators.it.smartproducemanagementsystem.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CURRENT_FRAGMENT = "current_fragment";
+    protected final String CURRENT_FRAGMENT = getString(R.string.current_fragment);
     private int selectedItemId = R.id.menu_dashboard; // default start with dashboard
 
     @Override
@@ -83,14 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void showExitConfirmationDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Exit App")
-                .setMessage("Are you sure you want to exit?")
+                .setTitle(R.string.exit_app)
+                .setMessage(R.string.are_you_sure_you_want_to_exit)
                 .setIcon(R.drawable.warning) // Optional: Add an alert icon
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
                     // Exit the app
                     finish();
                 })
-                .setNegativeButton("No", (dialog, which) -> {
+                .setNegativeButton(R.string.no, (dialog, which) -> {
                     // Dismiss the dialog
                     dialog.dismiss();
                 })

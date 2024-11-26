@@ -1,6 +1,5 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;

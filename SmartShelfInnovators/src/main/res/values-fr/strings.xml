@@ -62,4 +62,22 @@
     <string name="comment">Comments</string>
     <string name="submit_feedback">Submit Feedback</string>
     <string name="back">Back</string>
+    <string name="lastsubmissiontime">LastSubmissionTime</string>
+    <string name="feedbackprefs">FeedbackPrefs</string>
+    <string name="toast_validating_inputs">Please fill all fields and provide a rating</string>
+    <string name="rating">rating</string>
+    <string name="devicemodel">deviceModel</string>
+    <string name="failed_to_submit_feedback">"Failed to submit feedback: "</string>
+    <string name="d_hours_and_d_minutes">%d hours and %d minutes</string>
+    <string name="you_can_submit_feedback_again_in">"You can submit feedback again in "</string>
+    <string name="feedback_submitted">Feedback Submitted</string>
+    <string name="thank_you_for_your_feedback">Thank you for your feedback!</string>
+    <string name="ok">OK</string>
+    <string name="confirm_exit">Confirm Exit</string>
+    <string name="are_you_sure_you_want_to_go_back">Are you sure you want to go back?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="current_fragment">current_fragment</string>
+    <string name="exit_app">Exit App</string>
+    <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
 </resources>

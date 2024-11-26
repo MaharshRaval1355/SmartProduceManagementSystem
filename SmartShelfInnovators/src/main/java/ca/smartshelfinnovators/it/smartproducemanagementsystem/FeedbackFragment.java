@@ -32,9 +32,9 @@ public class FeedbackFragment extends Fragment {
     private RatingBar ratingBar;
     private ProgressBar progressBar;
 
-    private static final String PREFS_NAME = "FeedbackPrefs";
-    private static final String LAST_SUBMISSION_TIME = "LastSubmissionTime";
-    private static final long SUBMISSION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    protected final String PREFS_NAME = getString(R.string.feedbackprefs);
+    protected final String LAST_SUBMISSION_TIME = getString(R.string.lastsubmissiontime);
+    protected final long SUBMISSION_INTERVAL = 86400000; // 24 hours in milliseconds
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class FeedbackFragment extends Fragment {
 
         // Validate inputs
         if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || rating == 0) {
-            Toast.makeText(getContext(), "Please fill all fields and provide a rating", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.toast_validating_inputs, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -97,14 +97,14 @@ public class FeedbackFragment extends Fragment {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
         Map<String, Object> feedback = new HashMap<>();
-        feedback.put("name", name);
-        feedback.put("phone", phone);
-        feedback.put("email", email);
-        feedback.put("comment", comment);
-        feedback.put("rating", rating);
-        feedback.put("deviceModel", deviceModel);
+        feedback.put(getString(R.string.full_name), name);
+        feedback.put(getString(R.string.phone), phone);
+        feedback.put(getString(R.string.email), email);
+        feedback.put(getString(R.string.comment), comment);
+        feedback.put(getString(R.string.rating), rating);
+        feedback.put(getString(R.string.devicemodel), deviceModel);
 
-        firestore.collection("Feedback")
+        firestore.collection(getString(R.string.feedback))
                 .add(feedback)
                 .addOnSuccessListener(documentReference -> {
                     progressBar.setVisibility(View.GONE); // Hide progress bar
@@ -114,7 +114,7 @@ public class FeedbackFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> {
                     progressBar.setVisibility(View.GONE); // Hide progress bar
-                    Toast.makeText(getContext(), "Failed to submit feedback: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.failed_to_submit_feedback) + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -145,8 +145,8 @@ public class FeedbackFragment extends Fragment {
         long hours = TimeUnit.MILLISECONDS.toHours(remainingTime);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(remainingTime) % 60;
 
-        String timeString = String.format(Locale.getDefault(), "%d hours and %d minutes", hours, minutes);
-        Toast.makeText(getContext(), "You can submit feedback again in " + timeString, Toast.LENGTH_LONG).show();
+        String timeString = String.format(Locale.getDefault(), getString(R.string.d_hours_and_d_minutes), hours, minutes);
+        Toast.makeText(getContext(), getString(R.string.you_can_submit_feedback_again_in) + timeString, Toast.LENGTH_LONG).show();
     }
 
     private String getDeviceModel() {
@@ -155,9 +155,9 @@ public class FeedbackFragment extends Fragment {
 
     private void showConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Feedback Submitted")
-                .setMessage("Thank you for your feedback!")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .setTitle(R.string.feedback_submitted)
+                .setMessage(R.string.thank_you_for_your_feedback)
+                .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())
                 .create()
                 .show();
     }
@@ -165,14 +165,14 @@ public class FeedbackFragment extends Fragment {
     // Show an AlertDialog for confirmation
     public void showExitConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Confirm Exit")
-                .setMessage("Are you sure you want to go back?")
+                .setTitle(R.string.confirm_exit)
+                .setMessage(R.string.are_you_sure_you_want_to_go_back)
                 .setIcon(R.drawable.warning)
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
                     // Go back to the previous screen
                     requireActivity().getSupportFragmentManager().popBackStack();
                 })
-                .setNegativeButton("No", (dialog, which) -> {
+                .setNegativeButton(R.string.no, (dialog, which) -> {
                     // Dismiss the dialog
                     dialog.dismiss();
                 })
