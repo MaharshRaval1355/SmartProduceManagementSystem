@@ -32,9 +32,9 @@ public class FeedbackFragment extends Fragment {
     private RatingBar ratingBar;
     private ProgressBar progressBar;
 
-    protected final String PREFS_NAME = getString(R.string.feedbackprefs);
-    protected final String LAST_SUBMISSION_TIME = getString(R.string.lastsubmissiontime);
-    protected final long SUBMISSION_INTERVAL = 86400000; // 24 hours in milliseconds
+    private final String PREFS_NAME = "FeedbackPrefs";
+    private final String LAST_SUBMISSION_TIME = "LastSubmissionTime";
+    private final long SUBMISSION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
