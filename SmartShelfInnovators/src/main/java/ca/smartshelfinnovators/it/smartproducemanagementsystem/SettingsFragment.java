@@ -19,12 +19,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class SettingsFragment extends Fragment {
 
     View view;
-    protected TextView userNameTV, feedbackTV;
-    protected SharedPreferences.Editor editor;
-    protected Switch lockScreenSwitch;
-    protected Switch darkModeSwitch;
-    protected boolean isDarkModeEnabled;
-    protected boolean isLockScreenPortrait;
+    private TextView userNameTV, feedbackTV;
+    private SharedPreferences.Editor editor;
+    private Switch lockScreenSwitch;
+    private Switch darkModeSwitch;
+    private boolean isDarkModeEnabled;
+    private boolean isLockScreenPortrait;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
