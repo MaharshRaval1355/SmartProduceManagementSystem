@@ -15,40 +15,12 @@ import java.util.Set;
 
 public class DashboardFragment extends Fragment {
 
-    private String[] greetings = {
-            "Hello there,\nlooks like it's gonna be a great day!",
-            "Good day!\nReady to manage your inventory?",
-            "Hello!\nAll systems operational.",
-            "Welcome back!\nYour insights are ready.",
-            "Hi there,\ntime to check today’s metrics!"
-    };
-
-    private String[] alertMessages = {
-            "Unusual behavior in bakery section",
-            "Cold Beverages require Immediate Temperature Check",
-            "Stock depletion alert in dairy products",
-            "Temperature rise detected in frozen foods aisle"
-    };
-
-    private String[] stockMessages = {
-            "Deli: 30% - Needs Refill",
-            "Produce: 80% - Good Enough",
-            "IceCream: 50% - Running out.",
-            "Beverages: 70% - Adequate",
-            "Bakery: 60% - Consider Restocking"
-    };
-
-    private String[] sensorMessages = {
-            "High temperature in Frozen Foods",
-            "Lighting issues in Dairy",
-            "Moderate humidity in Produce",
-            "Excessive CO2 levels in Greenhouse",
-            "Ventilation failure in Bakery",
-            "Stable conditions in Meat Section"
-    };
-
     private TextView greetingTextView, alertDetails, stockDetails, sensorDetails;
     private FloatingActionButton fabRefresh;
+    protected String[] greetings = getResources().getStringArray(R.array.greetings);
+    protected String[] alertMessages = getResources().getStringArray(R.array.alert_messages);
+    protected String[] stockMessages = getResources().getStringArray(R.array.stock_messages);
+    protected String[] sensorMessages = getResources().getStringArray(R.array.sensor_messages);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

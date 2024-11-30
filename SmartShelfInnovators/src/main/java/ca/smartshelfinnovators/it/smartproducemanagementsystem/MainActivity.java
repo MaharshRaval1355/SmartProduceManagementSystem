@@ -3,7 +3,9 @@ package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -17,7 +19,7 @@ import ca.smartshelfinnovators.it.smartproducemanagementsystem.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CURRENT_FRAGMENT = "current_fragment";
+    protected final String CURRENT_FRAGMENT = getString(R.string.current_fragment);
     private int selectedItemId = R.id.menu_dashboard; // default start with dashboard
 
     @Override
@@ -34,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         bottomNav.setSelectedItemId(selectedItemId); // Set the saved item as selected
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                showExitConfirmationDialog();
+            }
+        });
     }
 
     @Override
@@ -71,4 +80,22 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    public void showExitConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.exit_app)
+                .setMessage(R.string.are_you_sure_you_want_to_exit)
+                .setIcon(R.drawable.warning) // Optional: Add an alert icon
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    // Exit the app
+                    finish();
+                })
+                .setNegativeButton(R.string.no, (dialog, which) -> {
+                    // Dismiss the dialog
+                    dialog.dismiss();
+                })
+                .create()
+                .show();
+    }
+
 }
