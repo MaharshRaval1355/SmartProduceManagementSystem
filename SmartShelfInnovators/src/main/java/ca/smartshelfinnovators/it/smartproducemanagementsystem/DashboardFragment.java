@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -120,20 +122,16 @@ public class DashboardFragment extends Fragment {
         return builder.toString().trim();
     }
 
-    // Method to store data in Firestore
     private void storeDataInFirestore() {
         String greeting = greetingTextView.getText().toString();
         String alerts = alertDetails.getText().toString();
         String stock = stockDetails.getText().toString();
         String sensors = sensorDetails.getText().toString();
 
-        // Create a new DashboardData object
         DashboardData dashboardData = new DashboardData(greeting, alerts, stock, sensors);
 
-        // Get Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Store the data in Firestore
         db.collection("dashboardData")
                 .document("latestData")
                 .set(dashboardData)
@@ -144,55 +142,4 @@ public class DashboardFragment extends Fragment {
                     // Handle failure
                 });
     }
-
-    public class DashboardData {
-        private String greeting;
-        private String alertMessages;
-        private String stockMessages;
-        private String sensorMessages;
-
-        // Default constructor required for Firestore
-        public DashboardData() {}
-
-        public DashboardData(String greeting, String alertMessages, String stockMessages, String sensorMessages) {
-            this.greeting = greeting;
-            this.alertMessages = alertMessages;
-            this.stockMessages = stockMessages;
-            this.sensorMessages = sensorMessages;
-        }
-
-        // Getters and setters
-        public String getGreeting() {
-            return greeting;
-        }
-
-        public void setGreeting(String greeting) {
-            this.greeting = greeting;
-        }
-
-        public String getAlertMessages() {
-            return alertMessages;
-        }
-
-        public void setAlertMessages(String alertMessages) {
-            this.alertMessages = alertMessages;
-        }
-
-        public String getStockMessages() {
-            return stockMessages;
-        }
-
-        public void setStockMessages(String stockMessages) {
-            this.stockMessages = stockMessages;
-        }
-
-        public String getSensorMessages() {
-            return sensorMessages;
-        }
-
-        public void setSensorMessages(String sensorMessages) {
-            this.sensorMessages = sensorMessages;
-        }
-    }
-
 }
