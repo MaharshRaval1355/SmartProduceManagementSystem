@@ -1,6 +1,7 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SettingsFragment extends Fragment {
 
     View view;
-    protected TextView userNameTV, feedbackTV;
+    protected TextView userNameTV, feedbackTV, logOutTV;
     protected SharedPreferences.Editor editor;
     protected Switch lockScreenSwitch;
     protected Switch darkModeSwitch;
@@ -81,6 +82,12 @@ public class SettingsFragment extends Fragment {
                     .commit();
         });
 
+        // Find the LogOut TextView and set the listener
+        logOutTV = view.findViewById(R.id.logOut_textview);
+        logOutTV.setOnClickListener(v -> {
+            logOut();
+        });
+
         return view;
     }
 
@@ -99,5 +106,22 @@ public class SettingsFragment extends Fragment {
         } else {
             requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }
+    }
+
+    // Logout method
+    private void logOut() {
+        // Clear "Remember Me" data
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(getString(R.string.userprefs), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // This will remove all "Remember Me" data
+        editor.apply();
+
+        // Log out from Firebase
+        FirebaseAuth.getInstance().signOut();
+
+        // Redirect to LoginActivity
+        Intent intent = new Intent(getActivity(), Login.class); // Replace LoginActivity with your actual Login Activity
+        startActivity(intent);
+        requireActivity().finish(); // Optional: Finish the current activity to prevent going back to Settings
     }
 }
