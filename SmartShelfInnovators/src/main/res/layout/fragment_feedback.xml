@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Feedback"
+            android:text="@string/feedback"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -24,7 +24,7 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/full_name"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:inputType="phone"
             android:minHeight="48dp" />
 
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
@@ -53,7 +53,7 @@
             android:id="@+id/et_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Comments"
+            android:hint="@string/comment"
             android:inputType="textMultiLine"
             android:minLines="3"
             android:layout_marginTop="8dp" />
@@ -72,7 +72,7 @@
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Feedback"
+            android:text="@string/submit_feedback"
             android:layout_marginTop="16dp" />
 
         <!-- Back Button -->
@@ -80,7 +80,7 @@
             android:id="@+id/btn_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back"
+            android:text="@string/back"
             android:layout_marginBottom="16dp"
             android:layout_gravity="start" />
 
