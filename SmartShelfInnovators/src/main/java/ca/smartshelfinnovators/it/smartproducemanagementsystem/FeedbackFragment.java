@@ -17,24 +17,21 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 
 public class FeedbackFragment extends Fragment {
 
     private EditText etName, etPhone, etEmail, etComment;
     private RatingBar ratingBar;
     private ProgressBar progressBar;
+    private Button btnSubmit;  // Submit button reference
 
     private static final String PREFS_NAME = "FeedbackPrefs";
     private static final String LAST_SUBMISSION_TIME = "LastSubmissionTime";
     private static final long SUBMISSION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+    private FeedbackHelper feedbackHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,21 +44,32 @@ public class FeedbackFragment extends Fragment {
         etComment = view.findViewById(R.id.et_comment);
         ratingBar = view.findViewById(R.id.ratingBar);
         progressBar = view.findViewById(R.id.progressBar);
+        btnSubmit = view.findViewById(R.id.btn_submit);  // Initialize the submit button
+
+        // Initialize FeedbackHelper
+        feedbackHelper = new FeedbackHelper(requireContext(), progressBar, "user_email");
 
         // Back Button
         Button btnBack = view.findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> showExitConfirmationDialog());
 
         // Submit Button
-        view.findViewById(R.id.btn_submit).setOnClickListener(v -> submitFeedback());
+        btnSubmit.setOnClickListener(v -> submitFeedback());
+
+        // Disable the button if feedback has already been submitted recently
+        if (!feedbackHelper.canSubmitFeedback()) {
+            long remainingTime = feedbackHelper.getRemainingTime();
+            showRemainingTimeOnButton(remainingTime);
+            disableSubmitButton();
+        }
 
         return view;
     }
 
     private void submitFeedback() {
-        if (!canSubmitFeedback()) {
-            long remainingTime = getRemainingTime();
-            showRemainingTimeToast(remainingTime);
+        if (!feedbackHelper.canSubmitFeedback()) {
+            long remainingTime = feedbackHelper.getRemainingTime();
+            showRemainingTimeOnButton(remainingTime);
             return;
         }
 
@@ -70,7 +78,7 @@ public class FeedbackFragment extends Fragment {
         String email = etEmail.getText().toString().trim();
         String comment = etComment.getText().toString().trim();
         float rating = ratingBar.getRating();
-        String deviceModel = getDeviceModel();
+        String deviceModel = feedbackHelper.getDeviceModel();
 
         // Validate inputs
         if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || rating == 0) {
@@ -82,63 +90,61 @@ public class FeedbackFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
         // Simulate a delay for submission
-        new Handler().postDelayed(() -> saveFeedbackToFirestore(name, phone, email, comment, rating, deviceModel), 5000);
+        new Handler().postDelayed(() -> {
+            feedbackHelper.saveFeedbackToFirestore(name, phone, email, comment, rating, deviceModel);
+
+            // Clear fields after submission
+            etName.setText("");
+            etPhone.setText("");
+            etEmail.setText("");
+            etComment.setText("");
+            ratingBar.setRating(0);  // Reset rating bar
+
+            disableSubmitButton();  // Disable button after submission
+        }, 5000);
     }
 
-    private boolean canSubmitFeedback() {
-        SharedPreferences preferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        long lastSubmissionTime = preferences.getLong(LAST_SUBMISSION_TIME, 0);
-        long currentTime = System.currentTimeMillis();
-
-        return (currentTime - lastSubmissionTime) >= SUBMISSION_INTERVAL;
+    private void disableSubmitButton() {
+        btnSubmit.setEnabled(false);
+        btnSubmit.setBackgroundColor(getResources().getColor(R.color.grey));  // Make button gray
+        updateButtonWithRemainingTime();
     }
 
-    private void saveFeedbackToFirestore(String name, String phone, String email, String comment, float rating, String deviceModel) {
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-
-        Map<String, Object> feedback = new HashMap<>();
-        feedback.put("name", name);
-        feedback.put("phone", phone);
-        feedback.put("email", email);
-        feedback.put("comment", comment);
-        feedback.put("rating", rating);
-        feedback.put("deviceModel", deviceModel);
-
-        firestore.collection("Feedback")
-                .add(feedback)
-                .addOnSuccessListener(documentReference -> {
-                    progressBar.setVisibility(View.GONE); // Hide progress bar
-                    saveLastSubmissionTime(); // Save the submission timestamp
-                    showConfirmationDialog(); // Show success confirmation dialog
-                    clearInputs(); // Clear input fields
-                })
-                .addOnFailureListener(e -> {
-                    progressBar.setVisibility(View.GONE); // Hide progress bar
-                    Toast.makeText(getContext(), "Failed to submit feedback: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+    private void updateButtonWithRemainingTime() {
+        long remainingTime = feedbackHelper.getRemainingTime();
+        if (remainingTime > 0) {
+            showRemainingTimeOnButton(remainingTime);  // Call the existing method to display the time
+        } else {
+            enableSubmitButton();  // Re-enable the submit button when the time is up
+        }
     }
 
-    private void clearInputs() {
-        etName.setText("");
-        etPhone.setText("");
-        etEmail.setText("");
-        etComment.setText("");
-        ratingBar.setRating(0);
+    private void enableSubmitButton() {
+        btnSubmit.setEnabled(true);
+        btnSubmit.setBackgroundColor(getResources().getColor(R.color.primary));  // Restore original color
     }
 
-    private void saveLastSubmissionTime() {
-        SharedPreferences preferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putLong(LAST_SUBMISSION_TIME, System.currentTimeMillis());
-        editor.apply();
-    }
+    private void showRemainingTimeOnButton(long remainingTime) {
+        long hours = TimeUnit.MILLISECONDS.toHours(remainingTime);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(remainingTime) % 60;
 
-    private long getRemainingTime() {
-        SharedPreferences preferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        long lastSubmissionTime = preferences.getLong(LAST_SUBMISSION_TIME, 0);
-        long currentTime = System.currentTimeMillis();
+        String timeString = String.format(Locale.getDefault(), "Wait %d hours %d min", hours, minutes);
+        btnSubmit.setText(timeString);
 
-        return SUBMISSION_INTERVAL - (currentTime - lastSubmissionTime);
+        // Update the remaining time periodically
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                long updatedRemainingTime = feedbackHelper.getRemainingTime();
+                if (updatedRemainingTime > 0) {
+                    showRemainingTimeOnButton(updatedRemainingTime);
+                    // Continue updating until the time is up
+                    new Handler().postDelayed(this, 60000);  // Update every minute
+                } else {
+                    enableSubmitButton();  // Re-enable the button when time is up
+                }
+            }
+        }, 60000);  // Update every minute
     }
 
     private void showRemainingTimeToast(long remainingTime) {
@@ -149,21 +155,7 @@ public class FeedbackFragment extends Fragment {
         Toast.makeText(getContext(), "You can submit feedback again in " + timeString, Toast.LENGTH_LONG).show();
     }
 
-    private String getDeviceModel() {
-        return android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL;
-    }
-
-    private void showConfirmationDialog() {
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Feedback Submitted")
-                .setMessage("Thank you for your feedback!")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
-                .create()
-                .show();
-    }
-
-    // Show an AlertDialog for confirmation
-    public void showExitConfirmationDialog() {
+    private void showExitConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Confirm Exit")
                 .setMessage("Are you sure you want to go back?")
@@ -180,3 +172,4 @@ public class FeedbackFragment extends Fragment {
                 .show();
     }
 }
+
