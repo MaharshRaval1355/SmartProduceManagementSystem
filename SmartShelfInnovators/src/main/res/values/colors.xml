@@ -10,4 +10,5 @@
     <color name="PaleSkyBlue">#A0B8C7</color>
     <color name="PastelNavy">#4F6E8D</color>
     <color name="Teal">#FF03DAC5</color>
+    <color name="snackbar_action">#A1371B</color>
 </resources>

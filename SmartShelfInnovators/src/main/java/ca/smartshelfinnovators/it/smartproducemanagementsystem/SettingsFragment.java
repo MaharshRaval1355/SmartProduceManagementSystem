@@ -1,6 +1,7 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -9,17 +10,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsFragment extends Fragment {
 
     View view;
-    private TextView userNameTV, feedbackTV;
+    Intent intent;
+    FirebaseUser currentUser;
+    private TextView userNameTV, feedbackTV, logOutTV;
     private SharedPreferences.Editor editor;
     private Switch lockScreenSwitch;
     private Switch darkModeSwitch;
@@ -34,7 +40,7 @@ public class SettingsFragment extends Fragment {
 
         userNameTV = view.findViewById(R.id.user_name);
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String displayName = currentUser.getDisplayName();
             userNameTV.setText(displayName != null ? displayName : getString(R.string.guest_user));
@@ -80,6 +86,49 @@ public class SettingsFragment extends Fragment {
                     .addToBackStack(null) // Adds this transaction to the back stack for back navigation
                     .commit();
         });
+
+        // Logout Button
+        logOutTV = view.findViewById(R.id.logOut_textview);
+
+        // Set the click listener to perform logout
+        logOutTV.setOnClickListener(v -> {
+            // Create a Snackbar with indefinite duration
+            Snackbar snackbar = Snackbar.make(view, R.string.confirm_logout, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.yes, confirmView -> {
+                        // Firebase sign out
+                        FirebaseAuth.getInstance().signOut();
+
+                        // Clear local user session data
+                        editor.clear();
+                        editor.apply();
+
+                        // Navigate to SignUp Activity
+                        intent = new Intent(requireActivity(), SignUp.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                        // Notify user
+                        Toast.makeText(requireContext(), R.string.logged_out_successfully, Toast.LENGTH_SHORT).show();
+                    })
+                    .setActionTextColor(getResources().getColor(R.color.snackbar_action)); // Optional: Customize action text color
+
+            // Show the Snackbar
+            snackbar.show();
+
+            // Override back button behavior to dismiss the Snackbar instead of navigating back
+            requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    if (snackbar.isShown()) {
+                        snackbar.dismiss(); // Dismiss the Snackbar
+                    } else {
+                        setEnabled(false); // Restore default back button behavior
+                        requireActivity().onBackPressed(); // Navigate back
+                    }
+                }
+            });
+        });
+
 
         return view;
     }
