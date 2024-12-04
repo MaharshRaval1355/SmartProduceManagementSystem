@@ -12,4 +12,5 @@
     <color name="Teal">#FF03DAC5</color>
     <color name="grey">#808080</color>
     <color name="primary">#A020F0</color>
+    <color name="snackbar_action">#A1371B</color>
 </resources>
