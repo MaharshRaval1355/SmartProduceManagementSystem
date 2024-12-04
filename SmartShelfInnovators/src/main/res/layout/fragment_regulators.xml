@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/regulators_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:padding="38dp"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <!-- DELI Card -->
+        <include layout="@layout/cardview_deli" android:id="@+id/deli_card" />
+
+        <!-- BAKERY Card -->
+        <include layout="@layout/cardview_bakery" android:id="@+id/bakery_card" />
+
+        <!-- DRINKS Card -->
+        <include layout="@layout/cardview_drinks" android:id="@+id/drinks_card" />
+
+        <!-- PRODUCE Card -->
+        <include layout="@layout/cardview_produce" android:id="@+id/produce_card" />
+
+        <!-- ICE CREAM Card -->
+        <include layout="@layout/cardview_icecream" android:id="@+id/icecream_card" />
+
+        <!-- DAIRY Card -->
+        <include layout="@layout/cardview_dairy" android:id="@+id/dairy_card" />
+
+    </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

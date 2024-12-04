@@ -26,7 +26,7 @@ public class FirebaseUtils {
         });
     }
 
-    private static void saveUserDetails(String userId, String email, String name, String phone, String password, FirebaseCallback callback) {
+    static void saveUserDetails(String userId, String email, String name, String phone, String password, FirebaseCallback callback) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         user.put("name", name);

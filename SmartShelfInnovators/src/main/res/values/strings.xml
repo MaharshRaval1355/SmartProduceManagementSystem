@@ -3,18 +3,18 @@
     <string name="email_cannot_be_empty">Email cannot be empty</string>
     <string name="password_cannot_be_empty">Password cannot be empty</string>
     <string name="signup_successful">SignUp Successful</string>
-    <string name="signup_failed">SingUp failed</string>
+    <string name="signup_failed">SignUp Failed</string>
     <string name="login_successful">Login Successful</string>
-    <string name="login_failed">Login failed</string>
+    <string name="login_failed">Login Failed</string>
     <string name="empty_fields_are_not_allowed">Empty fields are not allowed</string>
     <string name="please_enter_correct_email">Please Enter a valid email address</string>
-    <string name="invalid_password_format">Password must be least 6 characters, include a digit, a special character, and an uppercase letter.</string>
+    <string name="invalid_password_format">Be sure password must be least 6 characters, include a digit, a special character, and an uppercase letter.</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="not_yet_registered_sign_up">"not yet registered? Sign Up "</string>
+    <string name="not_yet_registered_sign_up">"Not yet registered? Sign Up"</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_an_user_login">Already an user? login</string>
+    <string name="already_an_user_login">Already a user? Login instead!</string>
     <string name="welcome_message">SmartSelf Innovators</string>
     <string name="or">Or</string>
     <string name="sign_in_with_google">Sign in with Google</string>
@@ -81,36 +81,6 @@
     <string name="current_fragment">current_fragment</string>
     <string name="exit_app">Exit App</string>
     <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
-
-    <string-array name="greetings">
-        <item>Hello there,&#10;looks like it\'s gonna be a great day!</item>
-        <item>Good day!&#10;Ready to manage your inventory?</item>
-        <item>Hello!&#10;All systems operational.</item>
-        <item>Welcome back!&#10;Your insights are ready.</item>
-        <item>Hi there,&#10;time to check today’s metrics!</item>
-    </string-array>
-
-    <string-array name="alert_messages">
-        <item>Unusual behavior in bakery section</item>
-        <item>Cold Beverages require Immediate Temperature Check</item>
-        <item>Stock depletion alert in dairy products</item>
-        <item>Temperature rise detected in frozen foods aisle</item>
-    </string-array>
-
-    <string-array name="stock_messages">
-        <item>Deli: 30% - Needs Refill</item>
-        <item>Produce: 80% - Good Enough</item>
-        <item>IceCream: 50% - Running out.</item>
-        <item>Beverages: 70% - Adequate</item>
-        <item>Bakery: 60% - Consider Restocking</item>
-    </string-array>
-
-    <string-array name="sensor_messages">
-        <item>High temperature in Frozen Foods</item>
-        <item>Lighting issues in Dairy</item>
-        <item>Moderate humidity in Produce</item>
-        <item>Excessive CO2 levels in Greenhouse</item>
-        <item>Ventilation failure in Bakery</item>
-        <item>Stable conditions in Meat Section</item>
-    </string-array>
+    <string name="logged_out_successfully">Logged Out Successfully</string>
+    <string name="confirm_logout">Confirm LogOut?</string>
 </resources>
