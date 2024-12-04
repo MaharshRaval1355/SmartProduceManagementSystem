@@ -5,9 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -97,6 +100,9 @@ public class DashboardFragment extends Fragment {
         alertDetails.setText(getRandomMessages(alertMessages, 2));
         stockDetails.setText(getRandomMessages(stockMessages, 3));
         sensorDetails.setText(getRandomMessages(sensorMessages, 3));
+
+        // Store the data in Firestore
+        storeDataInFirestore();
     }
 
     private void updateGreeting() {
@@ -114,5 +120,26 @@ public class DashboardFragment extends Fragment {
             }
         }
         return builder.toString().trim();
+    }
+
+    private void storeDataInFirestore() {
+        String greeting = greetingTextView.getText().toString();
+        String alerts = alertDetails.getText().toString();
+        String stock = stockDetails.getText().toString();
+        String sensors = sensorDetails.getText().toString();
+
+        DashboardData dashboardData = new DashboardData(greeting, alerts, stock, sensors);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("dashboardData")
+                .document("latestData")
+                .set(dashboardData)
+                .addOnSuccessListener(aVoid -> {
+                    // Data stored successfully
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure
+                });
     }
 }

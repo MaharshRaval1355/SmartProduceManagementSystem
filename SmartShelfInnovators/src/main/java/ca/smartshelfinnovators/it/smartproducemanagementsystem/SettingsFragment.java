@@ -25,12 +25,14 @@ public class SettingsFragment extends Fragment {
     View view;
     Intent intent;
     FirebaseUser currentUser;
-    private TextView userNameTV, feedbackTV, logOutTV;
-    private SharedPreferences.Editor editor;
-    private Switch lockScreenSwitch;
-    private Switch darkModeSwitch;
-    private boolean isDarkModeEnabled;
-    private boolean isLockScreenPortrait;
+    protected TextView userNameTV, feedbackTV, logOutTV;
+    protected SharedPreferences.Editor editor;
+    protected Switch lockScreenSwitch;
+    protected Switch darkModeSwitch;
+    protected boolean isDarkModeEnabled;
+    protected boolean isLockScreenPortrait;
+
+   
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,8 +130,6 @@ public class SettingsFragment extends Fragment {
                 }
             });
         });
-
-
         return view;
     }
 
