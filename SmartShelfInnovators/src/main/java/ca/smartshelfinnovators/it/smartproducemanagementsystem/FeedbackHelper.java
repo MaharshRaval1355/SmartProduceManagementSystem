@@ -21,7 +21,7 @@ public class FeedbackHelper {
 
     private Context context;
     private ProgressBar progressBar;
-    private String userEmail;  // New variable to store the user identifier (email)
+    private String userEmail;// New variable to store the user identifier (email)
 
     public FeedbackHelper(Context context, ProgressBar progressBar, String userEmail) {
         this.context = context;
@@ -45,8 +45,10 @@ public class FeedbackHelper {
         SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         long lastSubmissionTime = preferences.getLong(getSubmissionTimeKey(), 0);
         long currentTime = System.currentTimeMillis();
+        long elapsedTime = currentTime - lastSubmissionTime;
+        long remainingTime = SUBMISSION_INTERVAL - elapsedTime;
 
-        return SUBMISSION_INTERVAL - (currentTime - lastSubmissionTime);
+        return Math.max(remainingTime, 0);
     }
 
     public String getDeviceModel() {
