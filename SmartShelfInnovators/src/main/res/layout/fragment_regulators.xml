@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,116 +25,24 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/deli_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/gradient_background_regulators">
+        <!-- DELI Card -->
+        <include layout="@layout/cardview_deli" android:id="@+id/deli_card" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@drawable/gradient_background_regulators">
+        <!-- BAKERY Card -->
+        <include layout="@layout/cardview_bakery" android:id="@+id/bakery_card" />
 
-                <TextView
-                    android:id="@+id/deli_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="DELI"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:gravity="center"
-                    android:padding="8dp"/>
+        <!-- DRINKS Card -->
+        <include layout="@layout/cardview_drinks" android:id="@+id/drinks_card" />
 
-                <!-- Container for toggleable controls -->
-                <LinearLayout
-                    android:id="@+id/deli_controls_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+        <!-- PRODUCE Card -->
+        <include layout="@layout/cardview_produce" android:id="@+id/produce_card" />
 
-                    <Switch
-                        android:id="@+id/light_switch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Light Switch"
-                        android:textColor="@color/black"
-                        android:padding="8dp"/>
+        <!-- ICE CREAM Card -->
+        <include layout="@layout/cardview_icecream" android:id="@+id/icecream_card" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+        <!-- DAIRY Card -->
+        <include layout="@layout/cardview_dairy" android:id="@+id/dairy_card" />
 
-                        <TextView
-                            android:id="@+id/humidity_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="HUMIDITY"
-                            android:textColor="@color/black"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:padding="8dp"/>
-
-                        <SeekBar
-                            android:id="@+id/humidity_control"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:progress="40"
-                            android:max="100"
-                            android:padding="8dp"/>
-
-                        <TextView
-                            android:id="@+id/humidity_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="40%"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:padding="8dp"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:id="@+id/temperature_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TEMPERATURE"
-                            android:textColor="@color/black"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:padding="8dp"/>
-
-                        <SeekBar
-                            android:id="@+id/temperature_control"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:progress="55"
-                            android:max="100"
-                            android:padding="8dp"/>
-
-                        <TextView
-                            android:id="@+id/temperature_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="55%"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:padding="8dp"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
     </LinearLayout>
+    </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
