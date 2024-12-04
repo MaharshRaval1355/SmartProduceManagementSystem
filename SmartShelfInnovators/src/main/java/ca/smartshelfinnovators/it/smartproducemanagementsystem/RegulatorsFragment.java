@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,10 @@ public class RegulatorsFragment extends Fragment {
         TextView greetingTextView = view.findViewById(R.id.regulators_text_view);
         final LinearLayout deliControlsLayout = view.findViewById(R.id.deli_controls_layout);
         CardView deliCard = view.findViewById(R.id.deli_card);
+        final SeekBar humiditySeekBar = view.findViewById(R.id.humidity_control);
+        final SeekBar temperatureSeekBar = view.findViewById(R.id.temperature_control);
+        final TextView humidityValueTextView = view.findViewById(R.id.humidity_value);
+        final TextView temperatureValueTextView = view.findViewById(R.id.temperature_value);
 
         Random random = new Random();
         greetingTextView.setText(MESSAGES[random.nextInt(MESSAGES.length)]);
@@ -44,6 +49,41 @@ public class RegulatorsFragment extends Fragment {
                 } else {
                     deliControlsLayout.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        // Set up listeners for SeekBars to update the TextViews
+        humiditySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                humidityValueTextView.setText(progress + "%");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Optional: Implement if needed
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Optional: Implement if needed
+            }
+        });
+
+        temperatureSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                temperatureValueTextView.setText(progress + "°C");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Optional: Implement if needed
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Optional: Implement if needed
             }
         });
 
