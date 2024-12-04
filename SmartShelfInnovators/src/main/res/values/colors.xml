@@ -10,6 +10,9 @@
     <color name="PaleSkyBlue">#A0B8C7</color>
     <color name="PastelNavy">#4F6E8D</color>
     <color name="Teal">#FF03DAC5</color>
+
+    <color name="darkerShade">#D35F5F</color>
+    <color name="light_brown">#A67B5B</color>
     <color name="grey">#808080</color>
     <color name="primary">#A020F0</color>
     <color name="snackbar_action">#A1371B</color>
