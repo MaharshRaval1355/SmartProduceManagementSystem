@@ -1,7 +1,5 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
-
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 

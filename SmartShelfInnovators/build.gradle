@@ -38,42 +38,46 @@ dependencies {
     implementation libs.firebase.auth
     implementation libs.firebase.auth
     implementation libs.firebase.firestore
+    implementation libs.espresso.core
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
     implementation libs.material
     implementation"com.google.android.gms:play-services-auth:20.4.1"
-    implementation"com.google.firebase:firebase-auth:21.0.3"
+    implementation"com.google.firebase:firebase-auth:21.1.0"
     implementation"com.google.firebase:firebase-database:20.3.0"
     implementation 'com.google.firebase:firebase-firestore:24.7.1'
+    implementation 'com.google.firebase:firebase-analytics:21.0.0'
     implementation libs.material.v140
+    implementation 'com.google.firebase:firebase-firestore:24.2.1'
+    implementation 'com.google.firebase:firebase-firestore:24.4.1'
+
 
     testImplementation 'org.mockito:mockito-core:4.0.0'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:4.0.0'
     testImplementation 'com.google.firebase:firebase-auth:21.0.0'
     testImplementation 'com.google.firebase:firebase-firestore:24.0.0'
     testImplementation 'org.robolectric:robolectric:4.10.3'
-
     testImplementation 'org.mockito:mockito-core:5.5.0'
     testImplementation 'com.google.truth:truth:1.1.5'
     testImplementation 'androidx.test.ext:junit:1.1.5'
     testImplementation 'androidx.test:core:1.5.0'
+    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation 'org.mockito:mockito-inline:3.12.4'
 
-    dependencies {
-        // Firebase dependencies
-        implementation 'com.google.firebase:firebase-firestore:24.2.1'
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'  // For additional features like RecyclerView
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.5.0'  // For handling background processes
 
+    // JUnit 4 dependency
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:truth:1.4.0'
 
-        // Robolectric for unit testing (if applicable)
-        testImplementation 'org.robolectric:robolectric:4.8'
+    // UI Automator (for interacting with the UI outside of the app)
 
-        // Mockito for mocking dependencies
-        testImplementation 'org.mockito:mockito-core:3.12.4'
-        testImplementation 'org.mockito:mockito-inline:3.12.4'
-    }
-
-
+    androidTestImplementation 'androidx.test:rules:1.5.0'
 
 }

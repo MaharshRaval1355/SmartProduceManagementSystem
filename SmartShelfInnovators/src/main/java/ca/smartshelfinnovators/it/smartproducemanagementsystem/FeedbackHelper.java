@@ -2,7 +2,6 @@ package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -11,7 +10,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class FeedbackHelper {
 
