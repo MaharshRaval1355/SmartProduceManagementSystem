@@ -39,7 +39,7 @@ public class FeedbackFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btn_submit);  // Initialize the submit button
 
         // Initialize FeedbackHelper
-        feedbackHelper = new FeedbackHelper(requireContext(), progressBar, "user_email");
+        feedbackHelper = new FeedbackHelper(requireContext(), progressBar, getString(R.string.user_email));
 
         // Back Button
         Button btnBack = view.findViewById(R.id.btn_back);
@@ -74,7 +74,7 @@ public class FeedbackFragment extends Fragment {
 
         // Validate inputs
         if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || rating == 0) {
-            Toast.makeText(getContext(), "Please fill all fields and provide a rating", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.please_fill_all_fields_and_provide_a_rating), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -86,10 +86,10 @@ public class FeedbackFragment extends Fragment {
             feedbackHelper.saveFeedbackToFirestore(name, phone, email, comment, rating, deviceModel);
 
             // Clear fields after submission
-            etName.setText("");
-            etPhone.setText("");
-            etEmail.setText("");
-            etComment.setText("");
+            etName.setText(R.string.empty);
+            etPhone.setText(R.string.empty);
+            etEmail.setText(R.string.empty);
+            etComment.setText(R.string.empty);
             ratingBar.setRating(0);  // Reset rating bar
 
             disableSubmitButton();  // Disable button after submission
@@ -120,7 +120,7 @@ public class FeedbackFragment extends Fragment {
         long hours = TimeUnit.MILLISECONDS.toHours(remainingTime);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(remainingTime) % 60;
 
-        String timeString = String.format(Locale.getDefault(), "Wait %d hours %d min", hours, minutes);
+        String timeString = String.format(Locale.getDefault(), getString(R.string.wait_d_hours_d_min), hours, minutes);
         btnSubmit.setText(timeString);
 
         // Update the remaining time periodically
@@ -143,20 +143,20 @@ public class FeedbackFragment extends Fragment {
         long hours = TimeUnit.MILLISECONDS.toHours(remainingTime);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(remainingTime) % 60;
 
-        String timeString = String.format(Locale.getDefault(), "%d hours and %d minutes", hours, minutes);
-        Toast.makeText(getContext(), "You can submit feedback again in " + timeString, Toast.LENGTH_LONG).show();
+        String timeString = String.format(Locale.getDefault(), getString(R.string.d_hours_and_d_minutes), hours, minutes);
+        Toast.makeText(getContext(), getString(R.string.you_can_submit_feedback_again_in) + timeString, Toast.LENGTH_LONG).show();
     }
 
     private void showExitConfirmationDialog() {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Confirm Exit")
-                .setMessage("Are you sure you want to go back?")
+                .setTitle(getString(R.string.confirm_exit))
+                .setMessage(getString(R.string.are_you_sure_you_want_to_exit))
                 .setIcon(R.drawable.warning)
-                .setPositiveButton("Yes", (dialog, which) -> {
+                .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
                     // Go back to the previous screen
                     requireActivity().getSupportFragmentManager().popBackStack();
                 })
-                .setNegativeButton("No", (dialog, which) -> {
+                .setNegativeButton(getString(R.string.no), (dialog, which) -> {
                     // Dismiss the dialog
                     dialog.dismiss();
                 })

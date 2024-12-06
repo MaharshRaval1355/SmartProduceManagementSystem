@@ -72,6 +72,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'  // For additional features like RecyclerView
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.5.0'  // For handling background processes
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
 
     // JUnit 4 dependency
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

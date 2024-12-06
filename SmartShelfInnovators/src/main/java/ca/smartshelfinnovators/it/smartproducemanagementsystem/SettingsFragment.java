@@ -181,18 +181,18 @@ public class SettingsFragment extends Fragment {
                         String name = document.getString("name");
 
                         // Display data in TextView
-                        userNameTV.setText(name != null ? name : getString(R.string.guest_user));
+                        userNameTV.setText(name != null ? name : "Guest User");
                     } else {
-                        userNameTV.setText(getString(R.string.no_user_data_found_in_the_database));
-                        Log.d("Firestore", getString(R.string.no_such_document_for_uid) + uid);
+                        userNameTV.setText("No user data found in the database.");
+                        Log.d("Firestore", "No such document for UID: " + uid);
                     }
                 } else {
-                    Log.e("Firestore", getString(R.string.error_fetching_document), task.getException());
-                    Toast.makeText(requireContext(), getString(R.string.failed_to_fetch_user_data), Toast.LENGTH_SHORT).show();
+                    Log.e("Firestore", "Error fetching document: ", task.getException());
+                    Toast.makeText(requireContext(), "Failed to fetch user data.", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            userNameTV.setText(getString(R.string.no_user_logged_in));
+            userNameTV.setText("No user logged in.");
         }
     }
 
