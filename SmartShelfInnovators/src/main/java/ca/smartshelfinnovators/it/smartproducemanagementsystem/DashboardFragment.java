@@ -132,8 +132,8 @@ public class DashboardFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("dashboardData")
-                .document("latestData")
+        db.collection(getString(R.string.dashboarddata))
+                .document(getString(R.string.latestdata))
                 .set(dashboardData)
                 .addOnSuccessListener(aVoid -> {
                     // Data stored successfully

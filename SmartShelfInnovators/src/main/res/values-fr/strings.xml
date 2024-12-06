@@ -86,4 +86,10 @@
     <string name="notifications_enabled">notification enabled</string>
     <string name="notifications_disabled">notification disabled</string>
     <string name="permission_denied">permission Denied</string>
+    <string name="dashboarddata">dashboardData</string>
+    <string name="latestdata">latestData</string>
+    <string name="user_email">user_email</string>
+    <string name="please_fill_all_fields_and_provide_a_rating">Please fill all fields and provide a rating</string>
+    <string name="empty" />
+    <string name="wait_d_hours_d_min">Wait %d hours %d min</string>
 </resources>

@@ -84,6 +84,4 @@ public class FeedbackHelper {
         editor.apply();
     }
 
-    public void saveFeedbackToFirestore(String testFeedback, Context mockContext, ProgressBar mockProgressBar, String comment) {
-    }
 }
