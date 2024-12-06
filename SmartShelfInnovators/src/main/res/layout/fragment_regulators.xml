@@ -9,40 +9,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/regulators_text_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners"
-            android:padding="38dp"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <!-- DELI Card -->
-        <include layout="@layout/cardview_deli" android:id="@+id/deli_card" />
+            <!-- DELI Card -->
+            <TextView
+                android:id="@+id/regulators_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners"
+                android:padding="38dp"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-        <!-- BAKERY Card -->
-        <include layout="@layout/cardview_bakery" android:id="@+id/bakery_card" />
+            <include
+                android:id="@+id/deli_card"
+                layout="@layout/cardview_deli" />
 
-        <!-- DRINKS Card -->
-        <include layout="@layout/cardview_drinks" android:id="@+id/drinks_card" />
+            <!-- BAKERY Card -->
+            <include
+                android:id="@+id/bakery_card"
+                layout="@layout/cardview_bakery" />
 
-        <!-- PRODUCE Card -->
-        <include layout="@layout/cardview_produce" android:id="@+id/produce_card" />
+            <!-- DRINKS Card -->
+            <include
+                android:id="@+id/drinks_card"
+                layout="@layout/cardview_drinks" />
 
-        <!-- ICE CREAM Card -->
-        <include layout="@layout/cardview_icecream" android:id="@+id/icecream_card" />
+            <!-- PRODUCE Card -->
+            <include
+                android:id="@+id/produce_card"
+                layout="@layout/cardview_produce" />
 
-        <!-- DAIRY Card -->
-        <include layout="@layout/cardview_dairy" android:id="@+id/dairy_card" />
+            <!-- ICE CREAM Card -->
+            <include
+                android:id="@+id/icecream_card"
+                layout="@layout/cardview_icecream" />
 
-    </LinearLayout>
+            <!-- DAIRY Card -->
+            <include
+                android:id="@+id/dairy_card"
+                layout="@layout/cardview_dairy" />
+
+        </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
