@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 
 import ca.smartshelfinnovators.it.smartproducemanagementsystem.DashboardFragment;
 import ca.smartshelfinnovators.it.smartproducemanagementsystem.InventoryFragment;
