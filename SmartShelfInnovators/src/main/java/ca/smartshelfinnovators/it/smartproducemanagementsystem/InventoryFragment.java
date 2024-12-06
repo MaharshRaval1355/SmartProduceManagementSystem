@@ -1,7 +1,6 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,14 +35,57 @@ public class InventoryFragment extends Fragment {
 
         // Populate Inventory List with sample data
         inventoryList = new ArrayList<>();
-        inventoryList.add(new InventoryItem("Milk", "5 liters", "Low"));
-        inventoryList.add(new InventoryItem("Bread", "20 units", "Optimal"));
-        inventoryList.add(new InventoryItem("Apples", "15 kg", "High"));
+
+// Deli
         inventoryList.add(new InventoryItem("Chicken", "10 kg", "Low"));
+        inventoryList.add(new InventoryItem("Turkey", "15 kg", "Optimal"));
+        inventoryList.add(new InventoryItem("Ham", "5 kg", "Low"));
+
+// Bakery
+        inventoryList.add(new InventoryItem("Bread", "20 units", "Optimal"));
+        inventoryList.add(new InventoryItem("Cake", "8 units", "High"));
+        inventoryList.add(new InventoryItem("Croissant", "15 units", "Optimal"));
+
+// Drinks
+        inventoryList.add(new InventoryItem("Milk", "5 liters", "Low"));
+        inventoryList.add(new InventoryItem("Juice", "10 liters", "Optimal"));
+        inventoryList.add(new InventoryItem("Soda", "25 cans", "High"));
+
+// Produce
+        inventoryList.add(new InventoryItem("Apples", "15 kg", "High"));
+        inventoryList.add(new InventoryItem("Bananas", "12 kg", "Optimal"));
+        inventoryList.add(new InventoryItem("Carrots", "8 kg", "Low"));
+
+// Ice Cream
+        inventoryList.add(new InventoryItem("Vanilla Ice Cream", "20 tubs", "Optimal"));
+        inventoryList.add(new InventoryItem("Chocolate Ice Cream", "15 tubs", "High"));
+        inventoryList.add(new InventoryItem("Strawberry Ice Cream", "5 tubs", "Low"));
+
+// Dairy
+        inventoryList.add(new InventoryItem("Cheese", "10 blocks", "Optimal"));
+        inventoryList.add(new InventoryItem("Butter", "8 packs", "Low"));
+        inventoryList.add(new InventoryItem("Yogurt", "12 units", "High"));
+
 
         // Set up Adapter
         inventoryAdapter = new InventoryAdapter(getContext(), inventoryList);
         recyclerView.setAdapter(inventoryAdapter);
+
+        // Set up SearchView
+        SearchView searchView = view.findViewById(R.id.search_view_inventory);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                inventoryAdapter.filter(query); // Filter list on submit
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                inventoryAdapter.filter(newText); // Filter list on text change
+                return false;
+            }
+        });
 
         // Handle FAB click
         FloatingActionButton fab = view.findViewById(R.id.fab_add_item);
@@ -78,7 +121,6 @@ public class InventoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add New Item");
 
-        // Set up input fields
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_item, null);
         EditText itemNameInput = dialogView.findViewById(R.id.input_item_name);
         EditText itemStockInput = dialogView.findViewById(R.id.input_item_stock);
@@ -107,7 +149,6 @@ public class InventoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(action + " Item");
 
-        // Set up input field
         final EditText input = new EditText(getContext());
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
@@ -144,7 +185,6 @@ public class InventoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Edit Item");
 
-        // Set up input fields
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_item, null);
         EditText itemStockInput = dialogView.findViewById(R.id.input_item_stock);
         EditText itemStatusInput = dialogView.findViewById(R.id.input_item_status);

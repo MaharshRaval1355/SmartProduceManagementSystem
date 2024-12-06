@@ -7,16 +7,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder> {
 
     private Context context;
     private List<InventoryItem> inventoryList;
+    private List<InventoryItem> fullInventoryList; // Original list for filtering
 
     public InventoryAdapter(Context context, List<InventoryItem> inventoryList) {
         this.context = context;
-        this.inventoryList = inventoryList;
+        this.inventoryList = new ArrayList<>(inventoryList);
+        this.fullInventoryList = new ArrayList<>(inventoryList); // Copy for filtering
     }
 
     @NonNull
@@ -50,6 +53,21 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
     @Override
     public int getItemCount() {
         return inventoryList.size();
+    }
+
+    // Method to filter the inventory list
+    public void filter(String query) {
+        inventoryList.clear();
+        if (query.isEmpty()) {
+            inventoryList.addAll(fullInventoryList); // Show all items if query is empty
+        } else {
+            for (InventoryItem item : fullInventoryList) {
+                if (item.getItemName().toLowerCase().contains(query.toLowerCase())) {
+                    inventoryList.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public static class InventoryViewHolder extends RecyclerView.ViewHolder {
