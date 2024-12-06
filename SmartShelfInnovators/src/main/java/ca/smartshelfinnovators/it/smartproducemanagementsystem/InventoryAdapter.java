@@ -87,4 +87,13 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
             status = itemView.findViewById(R.id.item_status);
         }
     }
+
+    public void updateData(List<InventoryItem> newInventoryList) {
+        this.inventoryList.clear();
+        this.inventoryList.addAll(newInventoryList);
+        this.fullInventoryList.clear();
+        this.fullInventoryList.addAll(newInventoryList);
+        notifyDataSetChanged();
+    }
+
 }
