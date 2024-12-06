@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,14 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SettingsFragment extends Fragment {
 
@@ -46,13 +55,43 @@ public class SettingsFragment extends Fragment {
 
         // Initialize user information
         userNameTV = view.findViewById(R.id.user_name);
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        // Get the current user
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         if (currentUser != null) {
-            String displayName = currentUser.getDisplayName();
-            userNameTV.setText(displayName != null ? displayName : getString(R.string.guest_user));
+            String uid = currentUser.getUid(); // Get user UID
+
+            // Reference the Firestore database
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Reference the 'Users' collection and the current user's document
+            DocumentReference userRef = db.collection("Users").document(uid);
+
+            // Fetch the user data
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Retrieve fields
+                        String name = document.getString("name");
+                        String email = document.getString("email");
+
+                        // Display data in TextView
+                        userNameTV.setText(name != null ? name : "Guest User");
+                    } else {
+                        userNameTV.setText("No user data found in the database.");
+                        Log.d("Firestore", "No such document for UID: " + uid);
+                    }
+                } else {
+                    Log.e("Firestore", "Error fetching document: ", task.getException());
+                    Toast.makeText(requireContext(), "Failed to fetch user data.", Toast.LENGTH_SHORT).show();
+                }
+            });
         } else {
-            userNameTV.setText(R.string.no_user_logged_in);
+            userNameTV.setText("No user logged in.");
         }
+
+
 
         // Initialize switches and shared preferences
         darkModeSwitch = view.findViewById(R.id.darkMode_switch);
