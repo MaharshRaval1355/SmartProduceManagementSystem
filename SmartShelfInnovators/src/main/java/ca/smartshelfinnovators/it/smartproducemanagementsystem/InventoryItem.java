@@ -22,5 +22,14 @@ public class InventoryItem {
     public String getStatus() {
         return status;
     }
+
+    // Setter Methods
+    public void setStockLevel(String stockLevel) {
+        this.stockLevel = stockLevel;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 

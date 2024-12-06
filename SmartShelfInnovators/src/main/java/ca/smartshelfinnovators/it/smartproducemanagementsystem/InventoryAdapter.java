@@ -63,4 +63,3 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
         }
     }
 }
-

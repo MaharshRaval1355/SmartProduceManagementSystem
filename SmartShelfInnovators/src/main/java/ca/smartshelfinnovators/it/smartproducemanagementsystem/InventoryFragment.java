@@ -1,12 +1,20 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +46,128 @@ public class InventoryFragment extends Fragment {
 
         // Handle FAB click
         FloatingActionButton fab = view.findViewById(R.id.fab_add_item);
-        fab.setOnClickListener(v -> {
-            // Add logic to add, edit, or delete inventory items
-        });
+        fab.setOnClickListener(v -> showFabMenu(fab));
 
         return view;
+    }
+
+    private void showFabMenu(View anchor) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), anchor);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.inventory_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(this::onMenuItemClick);
+        popupMenu.show();
+    }
+
+    private boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.menu_add) {
+            showAddItemDialog();
+            return true;
+        } else if (item.getItemId() == R.id.menu_edit) {
+            showSearchItemDialog("Edit");
+            return true;
+        } else if (item.getItemId() == R.id.menu_remove) {
+            showSearchItemDialog("Remove");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void showAddItemDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Add New Item");
+
+        // Set up input fields
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_item, null);
+        EditText itemNameInput = dialogView.findViewById(R.id.input_item_name);
+        EditText itemStockInput = dialogView.findViewById(R.id.input_item_stock);
+        EditText itemStatusInput = dialogView.findViewById(R.id.input_item_status);
+        builder.setView(dialogView);
+
+        builder.setPositiveButton("Add", (dialog, which) -> {
+            String name = itemNameInput.getText().toString();
+            String stock = itemStockInput.getText().toString();
+            String status = itemStatusInput.getText().toString();
+
+            if (!name.isEmpty() && !stock.isEmpty() && !status.isEmpty()) {
+                inventoryList.add(new InventoryItem(name, stock, status));
+                inventoryAdapter.notifyDataSetChanged();
+                Toast.makeText(getContext(), "Item added!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.show();
+    }
+
+    private void showSearchItemDialog(String action) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(action + " Item");
+
+        // Set up input field
+        final EditText input = new EditText(getContext());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("Search", (dialog, which) -> {
+            String query = input.getText().toString();
+            InventoryItem foundItem = null;
+
+            for (InventoryItem item : inventoryList) {
+                if (item.getItemName().equalsIgnoreCase(query)) {
+                    foundItem = item;
+                    break;
+                }
+            }
+
+            if (foundItem != null) {
+                if (action.equals("Edit")) {
+                    showEditItemDialog(foundItem);
+                } else if (action.equals("Remove")) {
+                    inventoryList.remove(foundItem);
+                    inventoryAdapter.notifyDataSetChanged();
+                    Toast.makeText(getContext(), "Item removed!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Item not found!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.show();
+    }
+
+    private void showEditItemDialog(InventoryItem item) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Edit Item");
+
+        // Set up input fields
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_item, null);
+        EditText itemStockInput = dialogView.findViewById(R.id.input_item_stock);
+        EditText itemStatusInput = dialogView.findViewById(R.id.input_item_status);
+
+        itemStockInput.setText(item.getStockLevel());
+        itemStatusInput.setText(item.getStatus());
+        builder.setView(dialogView);
+
+        builder.setPositiveButton("Update", (dialog, which) -> {
+            String updatedStock = itemStockInput.getText().toString();
+            String updatedStatus = itemStatusInput.getText().toString();
+
+            if (!updatedStock.isEmpty() && !updatedStatus.isEmpty()) {
+                item.setStockLevel(updatedStock);
+                item.setStatus(updatedStatus);
+                inventoryAdapter.notifyDataSetChanged();
+                Toast.makeText(getContext(), "Item updated!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
 }
