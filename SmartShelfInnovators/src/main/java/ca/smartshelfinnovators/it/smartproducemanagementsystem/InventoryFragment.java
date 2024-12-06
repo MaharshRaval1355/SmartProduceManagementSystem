@@ -121,6 +121,7 @@ public class InventoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add New Item");
 
+        // Set up input fields
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_item, null);
         EditText itemNameInput = dialogView.findViewById(R.id.input_item_name);
         EditText itemStockInput = dialogView.findViewById(R.id.input_item_stock);
@@ -133,8 +134,10 @@ public class InventoryFragment extends Fragment {
             String status = itemStatusInput.getText().toString();
 
             if (!name.isEmpty() && !stock.isEmpty() && !status.isEmpty()) {
-                inventoryList.add(new InventoryItem(name, stock, status));
-                inventoryAdapter.notifyDataSetChanged();
+                InventoryItem newItem = new InventoryItem(name, stock, status);
+                inventoryList.add(newItem);
+                inventoryAdapter.resetData(inventoryList); // Reset the adapter's data
+                recyclerView.smoothScrollToPosition(inventoryList.size() - 1);
                 Toast.makeText(getContext(), "Item added!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
@@ -149,6 +152,7 @@ public class InventoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(action + " Item");
 
+        // Set up input field
         final EditText input = new EditText(getContext());
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
@@ -168,8 +172,9 @@ public class InventoryFragment extends Fragment {
                 if (action.equals("Edit")) {
                     showEditItemDialog(foundItem);
                 } else if (action.equals("Remove")) {
+                    int position = inventoryList.indexOf(foundItem);
                     inventoryList.remove(foundItem);
-                    inventoryAdapter.notifyDataSetChanged();
+                    inventoryAdapter.resetData(inventoryList); // Reset the adapter's data
                     Toast.makeText(getContext(), "Item removed!", Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -185,6 +190,7 @@ public class InventoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Edit Item");
 
+        // Set up input fields
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_item, null);
         EditText itemStockInput = dialogView.findViewById(R.id.input_item_stock);
         EditText itemStatusInput = dialogView.findViewById(R.id.input_item_status);
@@ -200,7 +206,7 @@ public class InventoryFragment extends Fragment {
             if (!updatedStock.isEmpty() && !updatedStatus.isEmpty()) {
                 item.setStockLevel(updatedStock);
                 item.setStatus(updatedStatus);
-                inventoryAdapter.notifyDataSetChanged();
+                inventoryAdapter.resetData(inventoryList); // Reset the adapter's data
                 Toast.makeText(getContext(), "Item updated!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
