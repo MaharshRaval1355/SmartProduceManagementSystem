@@ -86,4 +86,9 @@
     <string name="notifications_enabled">notification enabled</string>
     <string name="notifications_disabled">notification disabled</string>
     <string name="permission_denied">permission Denied</string>
+    <string name="dashboarddata">dashboardData</string>
+    <string name="latestdata">latestData</string>
+    <string name="percentage_sign">%</string>
+    <string name="degree_celcius">°C</string>
+
 </resources>

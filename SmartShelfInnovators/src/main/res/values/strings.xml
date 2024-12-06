@@ -87,4 +87,59 @@
     <string name="notifications_enabled">notification enabled</string>
     <string name="notifications_disabled">notification disabled</string>
     <string name="permission_denied">permission Denied</string>
+    <string name="dashboarddata">dashboardData</string>
+    <string name="latestdata">latestData</string>
+
+    <!-- Greetings -->
+    <string-array name="greetings">
+        <item>Hello there,\nlooks like it\'s gonna be a great day!</item>
+        <item>Good day!\nReady to manage your inventory?</item>
+        <item>Hello!\nAll systems operational.</item>
+        <item>Welcome back!\nYour insights are ready.</item>
+        <item>Hi there,\ntime to check today’s metrics!</item>
+    </string-array>
+
+    <!-- Alert Messages -->
+    <string-array name="alert_messages">
+        <item>Unusual behavior in bakery section</item>
+        <item>Cold Beverages require Immediate Temperature Check</item>
+        <item>Stock depletion alert in dairy products</item>
+        <item>Temperature rise detected in frozen foods aisle</item>
+    </string-array>
+
+    <!-- Stock Messages -->
+    <string-array name="stock_messages">
+        <item>Deli: 30% - Needs Refill</item>
+        <item>Produce: 80% - Good Enough</item>
+        <item>IceCream: 50% - Running out.</item>
+        <item>Beverages: 70% - Adequate</item>
+        <item>Bakery: 60% - Consider Restocking</item>
+    </string-array>
+
+    <!-- Sensor Messages -->
+    <string-array name="sensor_messages">
+        <item>High temperature in Frozen Foods</item>
+        <item>Lighting issues in Dairy</item>
+        <item>Moderate humidity in Produce</item>
+        <item>Excessive CO2 levels in Greenhouse</item>
+        <item>Ventilation failure in Bakery</item>
+        <item>Stable conditions in Meat Section</item>
+    </string-array>
+
+    <string name="percentage_sign">%</string>
+    <string name="degree_celcius">°C</string>
+
+    <!-- Regulator Messages -->
+    <string-array name="regulators_messages">
+        <item>What changes do we need to make today?</item>
+        <item>Is the humidity okay?</item>
+        <item>Check if the temperature settings are optimal.</item>
+        <item>Remember to adjust the lighting for better energy conservation.</item>
+        <item>Verify that all sensors are functioning properly.</item>
+        <item>Ensure the system is calibrated correctly.</item>
+        <item>Review the energy usage reports from yesterday.</item>
+        <item>Perform a quick system diagnostics check.</item>
+    </string-array>
+
+
 </resources>
