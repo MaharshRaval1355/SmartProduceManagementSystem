@@ -1,5 +1,6 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -26,21 +27,25 @@ public class RegulatorsHelper {
         });
 
         // Set up seek bars inside the controls layout
-        setupSeekBars(controlsLayout);
+        setupSeekBars(controlsLayout, parentView.getContext());
     }
 
     // Method to set up seek bars with functionality for humidity and temperature controls
-    private static void setupSeekBars(LinearLayout controlsLayout) {
+    private static void setupSeekBars(LinearLayout controlsLayout, Context context) {
         SeekBar humiditySeekBar = controlsLayout.findViewById(R.id.humidity_control);
         SeekBar temperatureSeekBar = controlsLayout.findViewById(R.id.temperature_control);
         TextView humidityValueTextView = controlsLayout.findViewById(R.id.humidity_value);
         TextView temperatureValueTextView = controlsLayout.findViewById(R.id.temperature_value);
 
+        // Load the percentage and degree Celsius symbols from strings.xml
+        String percentageSign = context.getResources().getString(R.string.percentage_sign);
+        String degreeCelsius = context.getResources().getString(R.string.degree_celcius);
+
         // Configure the humidity seek bar
         humiditySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                humidityValueTextView.setText(progress + "%");
+                humidityValueTextView.setText(progress + percentageSign);
             }
 
             @Override
@@ -58,7 +63,7 @@ public class RegulatorsHelper {
         temperatureSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                temperatureValueTextView.setText(progress + "°C");
+                temperatureValueTextView.setText(progress + degreeCelsius);
             }
 
             @Override

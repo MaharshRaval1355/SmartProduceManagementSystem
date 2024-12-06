@@ -14,12 +14,12 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
 
     private Context context;
     private List<InventoryItem> inventoryList;
-    private List<InventoryItem> fullInventoryList; // Original list for filtering
+    private List<InventoryItem> fullInventoryList; // Keep a reference to the full list for filtering
 
     public InventoryAdapter(Context context, List<InventoryItem> inventoryList) {
         this.context = context;
-        this.inventoryList = new ArrayList<>(inventoryList);
-        this.fullInventoryList = new ArrayList<>(inventoryList); // Copy for filtering
+        this.inventoryList = inventoryList;
+        this.fullInventoryList = new ArrayList<>(inventoryList); // Initialize with the original list
     }
 
     @NonNull
@@ -55,11 +55,11 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
         return inventoryList.size();
     }
 
-    // Method to filter the inventory list
+    // Method to filter inventory items based on a query
     public void filter(String query) {
         inventoryList.clear();
         if (query.isEmpty()) {
-            inventoryList.addAll(fullInventoryList); // Show all items if query is empty
+            inventoryList.addAll(fullInventoryList); // Restore full list if query is empty
         } else {
             for (InventoryItem item : fullInventoryList) {
                 if (item.getItemName().toLowerCase().contains(query.toLowerCase())) {
@@ -68,6 +68,13 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
             }
         }
         notifyDataSetChanged();
+    }
+
+    // Method to reset the adapter's data
+    public void resetData(List<InventoryItem> updatedList) {
+        fullInventoryList.clear();
+        fullInventoryList.addAll(updatedList);
+        filter(""); // Refresh the full list view
     }
 
     public static class InventoryViewHolder extends RecyclerView.ViewHolder {

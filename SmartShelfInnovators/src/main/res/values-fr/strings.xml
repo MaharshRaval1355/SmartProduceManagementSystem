@@ -110,4 +110,9 @@
     <string name="item_updated">Item updated!</string>
     <string name="add">Add</string>
     <string name="inventory">inventory</string>
+    <string name="dashboarddata">dashboardData</string>
+    <string name="latestdata">latestData</string>
+    <string name="percentage_sign">%</string>
+    <string name="degree_celcius">°C</string>
+
 </resources>
