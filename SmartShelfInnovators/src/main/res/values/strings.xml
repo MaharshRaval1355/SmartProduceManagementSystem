@@ -83,4 +83,8 @@
     <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
     <string name="logged_out_successfully">Logged Out Successfully</string>
     <string name="confirm_logout">Confirm LogOut?</string>
+    <string name="notificationsKey">notification enabled</string>
+    <string name="notifications_enabled">notification enabled</string>
+    <string name="notifications_disabled">notification disabled</string>
+    <string name="permission_denied">permission Denied</string>
 </resources>

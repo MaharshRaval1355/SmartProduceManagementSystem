@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notification_textview"
+        app:layout_constraintTop_toBottomOf="@+id/notification_switch"
         tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
 
     <TextView
@@ -64,24 +64,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/darkMode_switch" />
 
-    <TextView
-        android:id="@+id/notification_textview"
+    <Switch
+        android:id="@+id/notification_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_vertical"
-        android:padding="16dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
         android:text="@string/notifications"
         android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@+id/lockScreen_switch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_picture" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture"
+        tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize"/>
 
     <TextView
         android:id="@+id/Settings_textview"
@@ -129,7 +128,7 @@
         android:layout_width="123dp"
         android:layout_height="127dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/notification_textview"
+        app:layout_constraintBottom_toTopOf="@+id/notification_switch"
         app:layout_constraintEnd_toStartOf="@+id/user_position"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Settings_textview"
@@ -163,7 +162,7 @@
         android:text="@string/employee"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/notification_textview"
+        app:layout_constraintBottom_toTopOf="@+id/notification_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/profile_picture"
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
