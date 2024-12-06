@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -48,44 +49,20 @@ public class SettingsFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        ConstraintLayout profileSection = view.findViewById(R.id.profile_section);
+
         // Initialize user information
         userNameTV = view.findViewById(R.id.user_name);
-        // Get the current user
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        // Fetch user details from Firestore
+        fetchUserDetails(userNameTV);
 
-        if (currentUser != null) {
-            String uid = currentUser.getUid(); // Get user UID
-
-            // Reference the Firestore database
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-            // Reference the 'Users' collection and the current user's document
-            DocumentReference userRef = db.collection("Users").document(uid);
-
-            // Fetch the user data
-            userRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // Retrieve fields
-                        String name = document.getString("name");
-
-                        // Display data in TextView
-                        userNameTV.setText(name != null ? name : "Guest User");
-                    } else {
-                        userNameTV.setText("No user data found in the database.");
-                        Log.d("Firestore", "No such document for UID: " + uid);
-                    }
-                } else {
-                    Log.e("Firestore", "Error fetching document: ", task.getException());
-                    Toast.makeText(requireContext(), "Failed to fetch user data.", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            userNameTV.setText("No user logged in.");
-        }
-
-
+        // Set click listener for profile section
+        profileSection.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProfileFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         // Initialize switches and shared preferences
         darkModeSwitch = view.findViewById(R.id.darkMode_switch);
@@ -180,6 +157,43 @@ public class SettingsFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void fetchUserDetails(TextView userNameTV) {
+        // Get the current user
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid(); // Get user UID
+
+            // Reference the Firestore database
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Reference the 'Users' collection and the current user's document
+            DocumentReference userRef = db.collection("Users").document(uid);
+
+            // Fetch the user data
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Retrieve fields
+                        String name = document.getString("name");
+
+                        // Display data in TextView
+                        userNameTV.setText(name != null ? name : "Guest User");
+                    } else {
+                        userNameTV.setText("No user data found in the database.");
+                        Log.d("Firestore", "No such document for UID: " + uid);
+                    }
+                } else {
+                    Log.e("Firestore", "Error fetching document: ", task.getException());
+                    Toast.makeText(requireContext(), "Failed to fetch user data.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            userNameTV.setText("No user logged in.");
+        }
     }
 
     private void enableNotifications() {

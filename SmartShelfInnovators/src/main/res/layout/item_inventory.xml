@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@android:color/white"
+    android:layout_margin="8dp">
+
+    <!-- Item Name -->
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Item Name"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Stock Level -->
+    <TextView
+        android:id="@+id/item_stock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Stock Level"
+        android:textSize="14sp" />
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/item_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Status"
+        android:textSize="14sp"
+        android:textColor="@android:color/holo_red_dark" />
+</LinearLayout>

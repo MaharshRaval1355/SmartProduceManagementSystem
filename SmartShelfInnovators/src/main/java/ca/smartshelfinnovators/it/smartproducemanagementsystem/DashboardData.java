@@ -48,3 +48,5 @@ public class DashboardData {
         this.sensorMessages = sensorMessages;
     }
 }
+
+
