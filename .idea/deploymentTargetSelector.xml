@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="SmartShelfInnovators">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-16T23:42:24.180910500Z">
+        <DropdownSelection timestamp="2024-12-06T08:32:58.271799900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\ayush\.android\avd\Pixel_7_Pro_API_34.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=29201FDH200GJK" />
             </handle>
           </Target>
         </DropdownSelection>

@@ -23,11 +23,6 @@ public class FeedbackFragment extends Fragment {
     private RatingBar ratingBar;
     private ProgressBar progressBar;
     private Button btnSubmit;  // Submit button reference
-
-    private static final String PREFS_NAME = "FeedbackPrefs";
-    private static final String LAST_SUBMISSION_TIME = "LastSubmissionTime";
-    private static final long SUBMISSION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-
     private FeedbackHelper feedbackHelper;
 
     @Override

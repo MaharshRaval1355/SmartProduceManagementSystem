@@ -44,7 +44,7 @@ public class InventoryFragment extends Fragment {
 // Bakery
         inventoryList.add(new InventoryItem("Bread", "20 units", "Optimal"));
         inventoryList.add(new InventoryItem("Cake", "8 units", "High"));
-        inventoryList.add(new InventoryItem("Croissant", "15 units", "Optimal"));
+        inventoryList.add(new InventoryItem("Croissant", "14 units", "Optimal"));
 
 // Drinks
         inventoryList.add(new InventoryItem("Milk", "5 liters", "Low"));
