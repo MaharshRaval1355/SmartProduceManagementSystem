@@ -1,16 +1,27 @@
 package ca.smartshelfinnovators.it.smartproducemanagementsystem;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+
 
 public class SignUp extends AppCompatActivity {
 
@@ -26,6 +37,13 @@ public class SignUp extends AppCompatActivity {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance();
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)  // Enable offline persistence
+                .build();
+        firestore.setFirestoreSettings(settings);
+
 
         // Initialize UI elements
         signupEmail = findViewById(R.id.signup_email);
@@ -71,6 +89,28 @@ public class SignUp extends AppCompatActivity {
             return;
         }
 
+        // Check if the device is online or offline
+        if (!isNetworkConnected()) {
+            // Show a Toast message indicating offline status
+            Toast.makeText(SignUp.this, "You're offline. Showing cached data.", Toast.LENGTH_SHORT).show();
+        }
+        // Fetch user data from Firestore
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        firestore.collection("Users").document(email)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // Display user data if available
+                            userName.setText(document.getString("name"));
+                            phoneNumber.setText(document.getString("phone"));
+                        }
+                    } else {
+                        Toast.makeText(SignUp.this, "Error fetching data: " + task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
         // Register user
         FirebaseUtils.registerUser(auth, email, password, name, phone, new FirebaseUtils.FirebaseCallback() {
             @Override
@@ -84,5 +124,12 @@ public class SignUp extends AppCompatActivity {
                 Toast.makeText(SignUp.this, getString(R.string.signup_failed) + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // Check if the device is connected to the network
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 }

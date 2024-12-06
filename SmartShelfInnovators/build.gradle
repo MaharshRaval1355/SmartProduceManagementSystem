@@ -46,12 +46,14 @@ dependencies {
     implementation libs.material
     implementation"com.google.android.gms:play-services-auth:20.4.1"
     implementation"com.google.firebase:firebase-auth:21.1.0"
+    implementation 'com.google.firebase:firebase-auth:21.2.0'
     implementation"com.google.firebase:firebase-database:20.3.0"
     implementation 'com.google.firebase:firebase-firestore:24.7.1'
     implementation 'com.google.firebase:firebase-analytics:21.0.0'
     implementation libs.material.v140
-    implementation 'com.google.firebase:firebase-firestore:24.2.1'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
+    implementation 'com.google.firebase:firebase-firestore:24.5.0'
+    implementation "com.google.firebase:firebase-firestore:25.1.1"
 
 
     testImplementation 'org.mockito:mockito-core:4.0.0'
