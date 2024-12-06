@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class SplashActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
@@ -39,12 +38,8 @@ public class SplashActivity extends AppCompatActivity {
         titleText.startAnimation(fadeInAnimation);
         subtitleText.startAnimation(fadeInAnimation);
 
-        // Delay for 3 seconds, then transition to SignUp activity
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, SignUp.class);
-            startActivity(intent);
-            finish(); // Finish splash activity so it doesn't stay in the backstack
-        }, 3000); // 3000 milliseconds = 3 seconds
+        // Delay for 3 seconds, then check the login status
+        new Handler().postDelayed(this::checkLoginStatus, 3000); // 3000 milliseconds = 3 seconds
     }
 
     private void checkLoginStatus() {
@@ -52,9 +47,9 @@ public class SplashActivity extends AppCompatActivity {
 
         // Check if the user is logged in and "Remember Me" is checked
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.userprefs), MODE_PRIVATE);
-        boolean rememberMeChecked = sharedPreferences.contains(getString(R.string.email)) && sharedPreferences.contains(getString(R.string.password));
+        boolean rememberMeChecked = sharedPreferences.getBoolean(getString(R.string.remember_me), false);
 
-        if (currentUser != null && rememberMeChecked) {
+        if (currentUser != null || rememberMeChecked) {
             // User is logged in, navigate directly to MainActivity
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
         } else {

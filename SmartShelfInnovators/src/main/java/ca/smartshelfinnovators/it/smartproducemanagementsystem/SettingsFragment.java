@@ -59,7 +59,7 @@ public class SettingsFragment extends Fragment {
         lockScreenSwitch = view.findViewById(R.id.lockScreen_switch);
         notificationSwitch = view.findViewById(R.id.notification_switch);
 
-        sharedPreferences = requireContext().getSharedPreferences(getString(R.string.settingsprefs), Context.MODE_PRIVATE);
+        sharedPreferences = requireContext().getSharedPreferences(getString(R.string.userprefs), Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         isDarkModeEnabled = sharedPreferences.getBoolean(getString(R.string.darkModeKey), false);
@@ -133,7 +133,7 @@ public class SettingsFragment extends Fragment {
                     .setActionTextColor(getResources().getColor(R.color.snackbar_action));
             snackbar.show();
 
-            requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
                 @Override
                 public void handleOnBackPressed() {
                     if (snackbar.isShown()) {
