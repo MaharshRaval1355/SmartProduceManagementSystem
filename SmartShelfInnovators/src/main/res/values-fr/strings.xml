@@ -48,42 +48,137 @@
     <string name="confirm_password_cannot_be_empty">Confirmez votre mot de passe</string>
     <string name="passwords_must_match">Le mot de passe ne correspond pas</string>
     <string name="invalid_phone_number">Numéro de téléphone non valide</string>
-    <string name="lockScreenKey">lock_screen</string>
-    <string name="darkModeKey">dark_mode</string>
+    <string name="lockScreenKey">écran verrouillé</string>
+    <string name="darkModeKey">mode sombre</string>
     <string name="d_10" translatable="false">\\d{10}</string>
-    <string name="feedback">Feedback</string>
-    <string name="no_user_logged_in">No user logged in</string>
-    <string name="guest_user">Guest user</string>
+    <string name="feedback">Rétroaction</string>
+    <string name="no_user_logged_in">Aucun utilisateur connecté</string>
+    <string name="guest_user">Utilisateur invité</string>
     <string name="textview">TextView</string>
-    <string name="employee">Employee</string>
-    <string name="home">home</string>
-    <string name="help">help</string>
-    <string name="profile">profile</string>
-    <string name="comment">Comments</string>
-    <string name="submit_feedback">Submit Feedback</string>
-    <string name="back">Back</string>
-    <string name="lastsubmissiontime">LastSubmissionTime</string>
-    <string name="feedbackprefs">FeedbackPrefs</string>
-    <string name="toast_validating_inputs">Please fill all fields and provide a rating</string>
-    <string name="rating">rating</string>
-    <string name="devicemodel">deviceModel</string>
-    <string name="failed_to_submit_feedback">"Failed to submit feedback: "</string>
-    <string name="d_hours_and_d_minutes">%d hours and %d minutes</string>
-    <string name="you_can_submit_feedback_again_in">"You can submit feedback again in "</string>
-    <string name="feedback_submitted">Feedback Submitted</string>
-    <string name="thank_you_for_your_feedback">Thank you for your feedback!</string>
+    <string name="employee">Employé</string>
+    <string name="home">accueil</string>
+    <string name="help">aide</string>
+    <string name="profile">profil</string>
+    <string name="comment">Commentaires</string>
+    <string name="submit_feedback">Soumettre un commentaire</string>
+    <string name="back">Retour</string>
+    <string name="lastsubmissiontime">DernièreSoumission</string>
+    <string name="feedbackprefs">PréférencesCommentaires</string>
+    <string name="toast_validating_inputs">Veuillez remplir tous les champs et fournir une note</string>
+    <string name="rating">note</string>
+    <string name="devicemodel">modèleAppareil</string>
+    <string name="failed_to_submit_feedback">"Échec de l'envoi du commentaire : "</string>
+    <string name="d_hours_and_d_minutes">%d heures et %d minutes</string>
+    <string name="you_can_submit_feedback_again_in">"Vous pouvez soumettre un commentaire à nouveau dans "</string>
+    <string name="feedback_submitted">Commentaire soumis</string>
+    <string name="thank_you_for_your_feedback">Merci pour votre commentaire !</string>
     <string name="ok">OK</string>
-    <string name="confirm_exit">Confirm Exit</string>
-    <string name="are_you_sure_you_want_to_go_back">Are you sure you want to go back?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="current_fragment">current_fragment</string>
-    <string name="exit_app">Exit App</string>
-    <string name="are_you_sure_you_want_to_exit">Are you sure you want to exit?</string>
-    <string name="logged_out_successfully">Logged Out Successfully</string>
-    <string name="confirm_logout">Confirm LogOut?</string>
-    <string name="notificationsKey">notification enabled</string>
-    <string name="notifications_enabled">notification enabled</string>
-    <string name="notifications_disabled">notification disabled</string>
-    <string name="permission_denied">permission Denied</string>
+    <string name="confirm_exit">Confirmer la sortie</string>
+    <string name="are_you_sure_you_want_to_go_back">Êtes-vous sûr de vouloir revenir ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="current_fragment">fragment_courant</string>
+    <string name="exit_app">Quitter l’application</string>
+    <string name="are_you_sure_you_want_to_exit">Êtes-vous sûr de vouloir quitter ?</string>
+    <string name="logged_out_successfully">Déconnecté avec succès</string>
+    <string name="confirm_logout">Confirmer la déconnexion ?</string>
+    <string name="notificationsKey">notifications activées</string>
+    <string name="notifications_enabled">notifications activées</string>
+    <string name="notifications_disabled">notifications désactivées</string>
+    <string name="permission_denied">autorisation refusée</string>
+    <string name="profile_image">Image de profil</string>
+    <string name="user_name">Nom d’utilisateur</string>
+    <string name="password_icon">Icône du mot de passe</string>
+    <string name="toggle_password_visibility">"Basculer la visibilité du mot de passe "</string>
+    <string name="save_changes">Enregistrer les modifications</string>
+    <string name="back_button">Bouton Retour</string>
+    <string name="user_email">Adresse e-mail de l</string>
+    <string name="please_fill_all_fields_and_provide_a_rating">Veuillez remplir tous les champs et fournir une note</string>
+    <string name="empty">" "</string>
+    <string name="wait_d_hours_d_min">"%d heures %d min "</string>
+    <string name="inventory">Inventaire</string>
+    <string name="no_data_available">"Aucune donnée disponible "</string>
+    <string name="error_getting_data">Erreur lors de l’obtention des données</string>
+    <string name="edit">Modifier</string>
+    <string name="remove">Supprimer</string>
+    <string name="add_new_item">Ajouter un nouvel élément</string>
+    <string name="add">Ajouter</string>
+    <string name="item_added">Élément ajouté</string>
+    <string name="all_fields_are_required">Tous les champs sont obligatoires</string>
+    <string name="cancel">Annuler</string>
+    <string name="error_adding_item">Erreur lors de l’ajout d’un élément</string>
+    <string name="item">Élément</string>
+    <string name="search">Rechercher</string>
+    <string name="item_removed">Élément supprimé</string>
+    <string name="item_not_found">Élément introuvable</string>
+    <string name="edit_item">Modifier l’élément</string>
+    <string name="update">Mettre à jour</string>
+    <string name="item_updated">Élément mis à jour</string>
+    <string name="password_update">Mise à jour du mot de passe</string>
+    <string name="error_updating_password">"Erreur lors de la mise à jour du mot de passe "</string>
+    <string name="failed_to_update_password_please_try_again">Échec de la mise à jour du mot de passe, veuillez réessayer</string>
+    <string name="password_updated_successfully">Mot de passe mis à jour avec succès</string>
+    <string name="new_password_must_include_uppercase_lowercase_numbers_and_special_characters">Le nouveau mot de passe doit inclure des majuscules, minuscules, chiffres et caractères spéciaux</string>
+    <string name="new_password_cannot_be_empty">Le nouveau mot de passe ne peut pas être vide</string>
+    <string name="re_authentication">Ré-authentification</string>
+    <string name="error_during_re_authentication">Erreur lors de la ré-authentification</string>
+    <string name="re_authentication_failed_please_check_your_current_password">Échec de la ré-authentification, veuillez vérifier votre mot de passe actuel</string>
+    <string name="successful_re_authentication">Ré-authentification réussie</string>
+    <string name="current_password_is_not_strong_please_check_its_format">Le mot de passe actuel n’est pas fort, veuillez vérifier son format</string>
+    <string name="current_password_cannot_be_empty">Le mot de passe actuel ne peut pas être vide</string>
+    <string name="confirm">Confirmer</string>
+    <string name="re_authenticate">ré-authentification</string>
+    <string name="enter_your_current_password_to_proceed">Entrez votre mot de passe actuel pour continuer</string>
+    <string name="user_email_is_missing">L’adresse e-mail de l’utilisateur est manquante</string>
+    <string name="firestore">Firestore</string>
+    <string name="error_updating_profile">Erreur lors de la mise à jour du profil</string>
+    <string name="failed_to_update_profile">Échec de la mise à jour du profil</string>
+    <string name="profile_updated_successfully">Profil mis à jour avec succès</string>
+    <string name="please_fill_in_all_fields">Veuillez remplir tous les champs</string>
+    <string name="password_must_include_uppercase_lowercase_numbers_and_special_characters">Le mot de passe doit inclure des majuscules, minuscules, chiffres et caractères spéciaux</string>
+    <string name="error_fetching_user_details">Problèmes d’éclairage dans les produits laitiers</string>
+    <string name="no_user_data_found_in_the_database">Aucune donnée utilisateur trouvée dans la base de données</string>
+    <string name="user_data_not_found">Données utilisateur introuvables</string>
+    <string name="space"> </string>
+    <string name="dashboarddata">DonnéesTableauDeBord</string>
+    <string name="latestdata">DernièresDonnées</string>
+    <string name="percentage_sign">%</string>
+    <string name="degree_celcius">°C</string>
+
+    <!-- Salutations -->
+    <string-array name="greetings">
+        <item>Bonjour,\nil semble que ce sera une excellente journée !</item>
+        <item>Bonne journée !\nPrêt à gérer votre inventaire ?</item>
+        <item>Bonjour !\nTous les systèmes sont opérationnels.</item>
+        <item>Bon retour !\nVos analyses sont prêtes.</item>
+        <item>Salut,\nil est temps de vérifier les métriques du jour !</item>
+    </string-array>
+
+    <!-- Messages d'Alerte -->
+    <string-array name="alert_messages">
+        <item>Comportement inhabituel dans la section boulangerie</item>
+        <item>Les boissons froides nécessitent une vérification immédiate de la température</item>
+        <item>Alerte d’épuisement des stocks de produits laitiers</item>
+        <item>Augmentation de température détectée dans le rayon surgelés</item>
+    </string-array>
+
+    <!-- Messages de Stock -->
+    <string-array name="stock_messages">
+        <item>Charcuterie : 30 % - Nécessite un réapprovisionnement</item>
+        <item>Produits frais : 80 % - Suffisamment bon</item>
+        <item>Glaces : 50% - En épuisement.</item>
+        <item>Boissons : 70 % - Adéquat</item>
+        <item>Boulangerie : 60 % - Considérez un réapprovisionnement</item>
+    </string-array>
+
+    <!-- Messages des Capteurs -->
+    <string-array name="sensor_messages">
+        <item>Haute température dans les surgelés</item>
+        <item>Problèmes d’éclairage dans les produits laitiers</item>
+        <item>Humidité modérée dans les produits frais</item>
+        <item>Niveaux de CO2 excessifs dans la serre</item>
+        <item>Panne de ventilation dans la boulangerie</item>
+        <item>Conditions stables dans la section viande</item>
+    </string-array>
+
 </resources>
