@@ -8,9 +8,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import java.util.Random;
 
+
 public class RegulatorsFragment extends Fragment {
 
-
+    private String[] MESSAGES;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -18,7 +19,7 @@ public class RegulatorsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_regulators, container, false);
 
         // Load the MESSAGES array from strings.xml
-        String[] MESSAGES = getResources().getStringArray(R.array.regulators_messages);
+        MESSAGES = getResources().getStringArray(R.array.regulators_messages);
 
 
         // Set a random greeting message

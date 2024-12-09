@@ -135,7 +135,7 @@ public class SettingsFragment extends Fragment {
                         FirebaseAuth.getInstance().signOut();
                         editor.clear();
                         editor.apply();
-                        intent = new Intent(requireActivity(), SignUp.class);
+                        intent = new Intent(requireActivity(), Login.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         Toast.makeText(requireContext(), R.string.logged_out_successfully, Toast.LENGTH_SHORT).show();
