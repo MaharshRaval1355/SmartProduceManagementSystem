@@ -4,5 +4,11 @@
     <string name="latestdata">latestData</string>
     <string name="percentage_sign">%</string>
     <string name="degree_celcius">°C</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="user_name">User Name</string>
+    <string name="password_icon">Password Icon</string>
+    <string name="toggle_password_visibility">"Toggle Password Visibility "</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="back_button">Back Buttton</string>
 
 </resources>

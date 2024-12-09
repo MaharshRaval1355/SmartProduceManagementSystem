@@ -88,5 +88,95 @@
     <string name="notifications_disabled">notification disabled</string>
     <string name="permission_denied">permission Denied</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="user_name">User Name</string>
+    <string name="password_icon">Password Icon</string>
+    <string name="toggle_password_visibility">"Toggle Password Visibility "</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="back_button">Back Buttton</string>
+    <string name="user_email">User Email</string>
+    <string name="please_fill_all_fields_and_provide_a_rating">Please Fill All Fields And Provide A Rating</string>
+    <string name="empty">" "</string>
+    <string name="wait_d_hours_d_min">"%d hours %d min "</string>
+    <string name="inventory">Inventory</string>
+    <string name="no_data_available">"No data Available "</string>
+    <string name="error_getting_data">Error Getting Data</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="add_new_item">Add New Item</string>
+    <string name="add">Add</string>
+    <string name="item_added">Item Added</string>
+    <string name="all_fields_are_required">All fields are required</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_adding_item">Error Adding Item</string>
+    <string name="item">Item</string>
+    <string name="search">Search</string>
+    <string name="item_removed">Item Removed</string>
+    <string name="item_not_found">Item Not Found</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="update">Update</string>
+    <string name="item_updated">Item Updated</string>
+    <string name="password_update">Password Update</string>
+    <string name="error_updating_password">"Error updating password "</string>
+    <string name="failed_to_update_password_please_try_again">Failed to update password please try again</string>
+    <string name="password_updated_successfully">Password updated successfully</string>
+    <string name="new_password_must_include_uppercase_lowercase_numbers_and_special_characters">New password must include uppercase, lowercase, numbers and special characters</string>
+    <string name="new_password_cannot_be_empty">New password cannot be empty</string>
+    <string name="re_authentication">Re Authentication</string>
+    <string name="error_during_re_authentication">Error during re authentication</string>
+    <string name="re_authentication_failed_please_check_your_current_password">Re authentication failed please check your current password</string>
+    <string name="successful_re_authentication">Successful re authentication</string>
+    <string name="current_password_is_not_strong_please_check_its_format">Current password is not strong please check its format</string>
+    <string name="current_password_cannot_be_empty">Current password cannot be empty</string>
+    <string name="confirm">Confirm</string>
+    <string name="re_authenticate">re authentication</string>
+    <string name="enter_your_current_password_to_proceed">Enter your current password to proceed</string>
+    <string name="user_email_is_missing">User email is missing</string>
+    <string name="firestore">Firestore</string>
+    <string name="error_updating_profile">Error updating profile</string>
+    <string name="failed_to_update_profile">Failed to update profile</string>
+    <string name="profile_updated_successfully">Profile updated successfully</string>
+    <string name="please_fill_in_all_fields">Please fill in all fields</string>
+    <string name="password_must_include_uppercase_lowercase_numbers_and_special_characters">Passowrd must include uppercase, lowercase, numbers and special characters</string>
+    <string name="error_fetching_user_details">Error fetching user details</string>
+    <string name="no_user_data_found_in_the_database">No user data found in the database</string>
+    <string name="user_data_not_found">User data not found</string>
+    <string name="space">" "</string>
+
+    <!-- Greetings -->
+    <string-array name="greetings">
+        <item>Hello there,\nlooks like it\'s gonna be a great day!</item>
+        <item>Good day!\nReady to manage your inventory?</item>
+        <item>Hello!\nAll systems operational.</item>
+        <item>Welcome back!\nYour insights are ready.</item>
+        <item>Hi there,\ntime to check today’s metrics!</item>
+    </string-array>
+
+    <!-- Alert Messages -->
+    <string-array name="alert_messages">
+        <item>Unusual behavior in bakery section</item>
+        <item>Cold Beverages require Immediate Temperature Check</item>
+        <item>Stock depletion alert in dairy products</item>
+        <item>Temperature rise detected in frozen foods aisle</item>
+    </string-array>
+
+    <!-- Stock Messages -->
+    <string-array name="stock_messages">
+        <item>Deli: 30% - Needs Refill</item>
+        <item>Produce: 80% - Good Enough</item>
+        <item>IceCream: 50% - Running out.</item>
+        <item>Beverages: 70% - Adequate</item>
+        <item>Bakery: 60% - Consider Restocking</item>
+    </string-array>
+
+    <!-- Sensor Messages -->
+    <string-array name="sensor_messages">
+        <item>High temperature in Frozen Foods</item>
+        <item>Lighting issues in Dairy</item>
+        <item>Moderate humidity in Produce</item>
+        <item>Excessive CO2 levels in Greenhouse</item>
+        <item>Ventilation failure in Bakery</item>
+        <item>Stable conditions in Meat Section</item>
+        </string-array>
 </resources>
