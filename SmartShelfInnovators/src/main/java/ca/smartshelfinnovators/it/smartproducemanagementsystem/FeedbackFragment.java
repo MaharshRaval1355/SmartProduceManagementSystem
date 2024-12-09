@@ -43,7 +43,10 @@ public class FeedbackFragment extends Fragment {
 
         // Back Button
         Button btnBack = view.findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> showExitConfirmationDialog());
+        btnBack.setOnClickListener(v -> {
+            // Go back to the previous screen directly
+            requireActivity().getSupportFragmentManager().popBackStack();
+        });
 
         // Submit Button
         btnSubmit.setOnClickListener(v -> submitFeedback());
@@ -147,21 +150,5 @@ public class FeedbackFragment extends Fragment {
         Toast.makeText(getContext(), getString(R.string.you_can_submit_feedback_again_in) + timeString, Toast.LENGTH_LONG).show();
     }
 
-    private void showExitConfirmationDialog() {
-        new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.confirm_exit))
-                .setMessage(getString(R.string.are_you_sure_you_want_to_exit))
-                .setIcon(R.drawable.warning)
-                .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
-                    // Go back to the previous screen
-                    requireActivity().getSupportFragmentManager().popBackStack();
-                })
-                .setNegativeButton(getString(R.string.no), (dialog, which) -> {
-                    // Dismiss the dialog
-                    dialog.dismiss();
-                })
-                .create()
-                .show();
-    }
 }
 

@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#9C27B0"
+        android:background="@color/primary"
         android:title="Smart Produce Management System"
         android:titleTextColor="@color/black"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>

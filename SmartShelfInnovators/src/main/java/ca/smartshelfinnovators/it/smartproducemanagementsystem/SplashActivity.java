@@ -53,8 +53,8 @@ public class SplashActivity extends AppCompatActivity {
             // User is logged in, navigate directly to MainActivity
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
         } else {
-            // User is not logged in, navigate to SignUpActivity
-            startActivity(new Intent(SplashActivity.this, SignUp.class));
+            // User is not logged in, navigate to LoginActivity
+            startActivity(new Intent(SplashActivity.this, Login.class));
         }
         finish();
     }
