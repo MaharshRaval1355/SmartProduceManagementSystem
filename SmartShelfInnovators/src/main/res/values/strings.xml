@@ -143,6 +143,10 @@
     <string name="no_user_data_found_in_the_database">No user data found in the database</string>
     <string name="user_data_not_found">User data not found</string>
     <string name="space">" "</string>
+    <string name="dashboarddata">Dashboarddata</string>
+    <string name="latestdata">Latestdata</string>
+    <string name="percentage_sign">%</string>
+    <string name="degree_celcius">°C</string>
 
     <!-- Greetings -->
     <string-array name="greetings">

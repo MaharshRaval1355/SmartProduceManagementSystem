@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="dashboarddata">dashboardData</string>
     <string name="latestdata">latestData</string>
     <string name="percentage_sign">%</string>
     <string name="degree_celcius">°C</string>
