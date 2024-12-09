@@ -100,7 +100,7 @@
     <string name="no_data_available">"Aucune donnée disponible "</string>
     <string name="error_getting_data">Erreur lors de l’obtention des données</string>
     <string name="edit">Modifier</string>
-    <string name="remove">Supprimer</string>
+    <string name="remove">Supprimer </string>
     <string name="add_new_item">Ajouter un nouvel élément</string>
     <string name="add">Ajouter</string>
     <string name="item_added">Élément ajouté</string>
