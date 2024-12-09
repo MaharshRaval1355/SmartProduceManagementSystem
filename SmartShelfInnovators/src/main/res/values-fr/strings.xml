@@ -124,7 +124,7 @@
     <string name="error_during_re_authentication">Erreur lors de la ré-authentification</string>
     <string name="re_authentication_failed_please_check_your_current_password">Échec de la ré-authentification, veuillez vérifier votre mot de passe actuel</string>
     <string name="successful_re_authentication">Ré-authentification réussie</string>
-    <string name="current_password_is_not_strong_please_check_its_format">Le mot de passe actuel n'est pas suffisamment fort, veuillez vérifier son format</string>
+    <string name="current_password_is_not_strong_please_check_its_format">Le mot de passe actuel n’est pas fort, veuillez vérifier son format</string>
     <string name="current_password_cannot_be_empty">Le mot de passe actuel ne peut pas être vide</string>
     <string name="confirm">Confirmer</string>
     <string name="re_authenticate">ré-authentification</string>
@@ -136,7 +136,7 @@
     <string name="profile_updated_successfully">Profil mis à jour avec succès</string>
     <string name="please_fill_in_all_fields">Veuillez remplir tous les champs</string>
     <string name="password_must_include_uppercase_lowercase_numbers_and_special_characters">Le mot de passe doit inclure des majuscules, minuscules, chiffres et caractères spéciaux</string>
-    <string name="error_fetching_user_details">Erreur lors de la récupération des détails de l'utilisateur</string>
+    <string name="error_fetching_user_details">Problèmes d’éclairage dans les produits laitiers</string>
     <string name="no_user_data_found_in_the_database">Aucune donnée utilisateur trouvée dans la base de données</string>
     <string name="user_data_not_found">Données utilisateur introuvables</string>
     <string name="space"> </string>
