@@ -18,4 +18,7 @@
     <color name="snackbar_action">#A1371B</color>
     <color name="indigo">#673AB7</color>
 
+    <color name="green_bck">#4CAF50</color> <!-- Light purple for CardView background -->
+    <color name="progressColor">#4CAF50</color> <!-- Soft green for ProgressBar fill -->
+
 </resources>

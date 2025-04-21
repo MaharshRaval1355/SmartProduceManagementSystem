@@ -1,42 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@drawable/bkgd_inventory">
 
-    <!-- SearchView for searching inventory items -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view_inventory"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:queryHint="Search for an item"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- RecyclerView for inventory items -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_inventory"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/search_view_inventory"
-        app:layout_constraintBottom_toTopOf="@id/fab_add_item"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Status CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="16dp"
+            android:backgroundTint="@color/green_bck">
 
-    <!-- Floating Action Button for adding items -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="@color/darkerShade" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/neopixel_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NeoPixel: --"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/conveyor_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conveyor Belt: --"
+                    android:textSize="21sp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/joystick_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Joystick: --"
+                    android:textSize="21sp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/last_updated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Updated: --"
+                    android:textSize="21sp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Bin 1 -->
+        <TextView
+            android:id="@+id/bin1_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bin 1 (Bakery): --"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/bin1_progress"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="0"
+            android:progressTint="@color/progressColor"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Bin 2 -->
+        <TextView
+            android:id="@+id/bin2_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bin 2 (Household): --"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/bin2_progress"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="0"
+            android:progressTint="@color/progressColor"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Bin 3 -->
+        <TextView
+            android:id="@+id/bin3_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bin 3 (Seasonal): --"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/bin3_progress"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="0"
+            android:progressTint="@color/progressColor"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Bin 4 -->
+        <TextView
+            android:id="@+id/bin4_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bin 4 (Face And Body): --"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <ProgressBar
+            android:id="@+id/bin4_progress"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="0"
+            android:progressTint="@color/progressColor"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Control Buttons vertically aligned -->
+        <Button
+            android:id="@+id/refresh_btn"
+            android:layout_width="184dp"
+            android:layout_height="59dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:text="Refresh"
+            android:textSize="22sp"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/emergency_stop_btn"
+            android:layout_width="253dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="Emergency Stop"
+            android:textSize="24sp"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>
