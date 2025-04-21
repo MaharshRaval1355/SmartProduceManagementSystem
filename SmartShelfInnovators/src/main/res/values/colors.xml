@@ -20,5 +20,7 @@
 
     <color name="green_bck">#4CAF50</color> <!-- Light purple for CardView background -->
     <color name="progressColor">#4CAF50</color> <!-- Soft green for ProgressBar fill -->
+    <color name="lavender_light">#BFC6FD</color>
+
 
 </resources>
