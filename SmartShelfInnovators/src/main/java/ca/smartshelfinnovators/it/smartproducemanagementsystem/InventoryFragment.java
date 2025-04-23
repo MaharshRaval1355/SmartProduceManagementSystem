@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,14 +29,14 @@ public class InventoryFragment extends Fragment {
     private TextView bin1Count, bin2Count, bin3Count, bin4Count;
     private ProgressBar bin1Progress, bin2Progress, bin3Progress, bin4Progress;
     private Button emergencyStopBtn, refreshBtn;
-    private DatabaseReference dbRef;
+    private DatabaseReference rootRef;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inventory, container, false);
 
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
         neopixelStatusText = view.findViewById(R.id.neopixel_status);
         conveyorStatusText = view.findViewById(R.id.conveyor_status);
@@ -58,48 +57,88 @@ public class InventoryFragment extends Fragment {
         refreshBtn = view.findViewById(R.id.refresh_btn);
 
         emergencyStopBtn.setOnClickListener(v -> {
-            dbRef.child("status").child("neopixel").setValue("Red");
+            rootRef.child("status").child("neopixel").setValue("red");
             Toast.makeText(getContext(), "Emergency stop triggered!", Toast.LENGTH_SHORT).show();
         });
 
-        refreshBtn.setOnClickListener(v -> fetchData());
+        refreshBtn.setOnClickListener(v -> fetchFirebaseData());
 
-        fetchData();
+        setupRealtimeListener();
 
         return view;
     }
 
-    private void fetchData() {
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void setupRealtimeListener() {
+        DatabaseReference liveDataRef = rootRef.child("live_data");
+
+        liveDataRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String neopixel = snapshot.child("status/neopixel").getValue(String.class);
-                String joystick = snapshot.child("status/joystick").getValue(String.class);
-                Long bin1 = snapshot.child("bins/bin1/quantity").getValue(Long.class);
-                Long bin4 = snapshot.child("bins/bin4/quantity").getValue(Long.class);
+                String item = snapshot.child("item").getValue(String.class);
+                String lightStatus = snapshot.child("light_status").getValue(String.class);
+                String joystickBtn = snapshot.child("joystick/button").getValue(String.class);
+                Long timestamp = snapshot.child("timestamp").getValue(Long.class);
 
-                neopixelStatusText.setText("NeoPixel: " + neopixel);
-                conveyorStatusText.setText("Conveyor Belt: " + ("green".equals(neopixel) ? "Running Fine" : "Issue Detected"));
-                joystickStatusText.setText("Joystick: " + (joystick != null ? joystick : "Unknown"));
-                lastUpdatedText.setText("Last Updated: " + new SimpleDateFormat("dd MMM, hh:mm a", Locale.getDefault()).format(new Date()));
+                if (item == null) item = "--";
+                if (lightStatus == null) lightStatus = "--";
+                if (joystickBtn == null) joystickBtn = "--";
 
-                bin1Count.setText("Bin 1 (Bakery): " + (bin1 != null ? bin1 : 0) + " items");
-                bin1Progress.setProgress(bin1 != null ? Math.min((int)(bin1 * 10), 100) : 0);
+                neopixelStatusText.setText("NeoPixel: " + item);
+                conveyorStatusText.setText("Conveyor Belt: " + ("red".equalsIgnoreCase(item) ? "Issue Detected" : "Running Fine"));
+                joystickStatusText.setText("Joystick: " + joystickBtn);
 
-                bin2Count.setText("Bin 2 (Household): N/A");
-                bin2Progress.setProgress(0);
+                if (timestamp != null) {
+                    lastUpdatedText.setText("Last Updated: " +
+                            new SimpleDateFormat("dd MMM, hh:mm a", Locale.getDefault()).format(new Date(timestamp * 1000)));
+                }
 
-                bin3Count.setText("Bin 3 (Seasonal): 0 items");
-                bin3Progress.setProgress(0);
-
-                bin4Count.setText("Bin 4 (Face & Body): " + (bin4 != null ? bin4 : 0) + " items");
-                bin4Progress.setProgress(bin4 != null ? Math.min((int)(bin4 * 10), 100) : 0);
+                fetchBinData(); // Nested call to fetch bins safely
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to load live data", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void fetchBinData() {
+        rootRef.child("bins").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot binSnapshot) {
+                Long bin1 = binSnapshot.child("bin1/quantity").getValue(Long.class);
+                Long bin2 = binSnapshot.child("bin2/quantity").getValue(Long.class);
+                Long bin3 = binSnapshot.child("bin3/quantity").getValue(Long.class);
+                Long bin4 = binSnapshot.child("bin4/quantity").getValue(Long.class);
+
+                if (bin1 == null) bin1 = 0L;
+                if (bin2 == null) bin2 = 0L;
+                if (bin3 == null) bin3 = 0L;
+                if (bin4 == null) bin4 = 0L;
+
+
+                bin1Count.setText("Bin 1 (Bakery): " + bin1 + " items");
+                bin1Progress.setProgress(Math.min((int) (bin1 * 10), 100));
+
+                bin2Count.setText("Bin 2 (Seasonal): " + bin2 + "items");
+                bin2Progress.setProgress(Math.min((int) (bin2 * 10), 100));
+
+                bin3Count.setText("Bin 3 (Face & Body): " + bin3 + "items");
+                bin3Progress.setProgress(Math.min((int) (bin3 * 10), 100));
+
+                bin4Count.setText("Bin 4 (Produce): " + bin4 + " items");
+                bin4Progress.setProgress(Math.min((int) (bin4 * 10), 100));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to load bin data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void fetchFirebaseData() {
+        // Manual refresh fallback
+        setupRealtimeListener();
     }
 }
